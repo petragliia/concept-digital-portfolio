@@ -40,10 +40,12 @@ const Portfolio = () => {
             </div>
 
             {/* Project Modal Overlay */}
-            <ProjectModal
-                project={selectedProject}
-                onClose={() => setSelectedProject(null)}
-            />
+            {selectedProject && (
+                <ProjectModal
+                    project={selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                />
+            )}
         </section>
     );
 };

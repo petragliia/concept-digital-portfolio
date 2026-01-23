@@ -5,11 +5,13 @@ import { openWhatsAppProject } from '../utils/whatsapp';
 const ProjectModal = ({ project, onClose }) => {
     // Lock scroll when modal is open
     useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, []);
+        if (project) {
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = 'unset';
+            };
+        }
+    }, [project]);
 
     // Close on Escape key
     useEffect(() => {
