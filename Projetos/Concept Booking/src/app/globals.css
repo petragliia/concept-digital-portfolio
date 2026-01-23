@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  /* Premium Deep Blue & Gold Palette */
+  --pk-navy: #051020;
+  --pk-navy-light: #0B192E;
+  --pk-gold: #C5A059; 
+  --pk-gold-hover: #D6B36A;
+  --pk-text-primary: #F8FAFC;
+  --pk-text-secondary: #94A3B8;
+  
+  --background: var(--pk-navy);
+  --foreground: var(--pk-text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--pk-gold);
+  --color-primary-hover: var(--pk-gold-hover);
+  
+  --color-navy: var(--pk-navy);
+  --color-navy-light: var(--pk-navy-light);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Utilities for Premium Glass Effect */
+.glass-panel {
+  background: rgba(11, 25, 46, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
