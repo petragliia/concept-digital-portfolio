@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
-import Method from '../components/Method';
+import MethodEvolution from '../components/MethodEvolution';
 import Portfolio from '../components/Portfolio';
 import Contact from '../components/Contact';
 
@@ -25,7 +25,7 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <Method />
+            <MethodEvolution />
             <Portfolio />
             <Contact />
         </>

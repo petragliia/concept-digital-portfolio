@@ -8,9 +8,19 @@ const Portfolio = () => {
     const [selectedProject, setSelectedProject] = useState(null);
 
     return (
-        <section id="portfolio" className="py-24 relative overflow-hidden">
+        <section id="portfolio" className="py-24 relative overflow-hidden bg-[#050505]">
+            {/* Premium Background Effects */}
+            <div className="absolute inset-0 z-0">
+                {/* Subtle Grid */}
+                <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-[0.03]" />
+
+                {/* Ambient Glows - Deep Blue and Gold */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-digital-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
+                <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] translate-y-1/4 -translate-x-1/4" />
+            </div>
+
             {/* Decorative Lines */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-digital-primary/20 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-digital-primary/20 to-transparent z-10" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-16 gap-4">
