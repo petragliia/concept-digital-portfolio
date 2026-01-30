@@ -41,7 +41,7 @@ export default function Home() {
       <FloatingBackButton />
 
       {/* HERO SECTION - INNOVATED WITH PARALLAX & SPOTLIGHT */}
-      <section ref={heroRef} className="relative min-h-[95vh] flex items-center pt-24 pb-12 overflow-hidden group/hero">
+      <section ref={heroRef} className="relative min-h-[92vh] lg:min-h-[95vh] flex items-end lg:items-center pt-0 lg:pt-24 pb-12 lg:pb-12 overflow-hidden group/hero">
 
         {/* LIGHTING LAYER: Dynamic Spotlight Overlay */}
         <div
@@ -70,48 +70,48 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,255,255,0.02)_0%,_transparent_100%)]" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="container mx-auto px-6 z-20 static lg:relative h-full flex flex-col justify-end lg:block">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
 
             {/* Left Content - Typography & CTA with Parallax */}
             <div
-              className="lg:col-span-7 flex flex-col justify-center transition-transform duration-300 ease-out"
-              style={{ transform: calculateParallax(15) }}
+              className="lg:col-span-7 flex flex-col justify-end lg:justify-center relative z-20 pb-12 lg:pb-0 transition-transform duration-300 ease-out h-full lg:h-auto"
+              style={{ transform: typeof window !== 'undefined' && window.innerWidth >= 1024 ? calculateParallax(15) : 'none' }}
             >
 
-              <div className="mb-6 flex items-center gap-3">
-                <div className="h-px w-8 bg-gold-500"></div>
-                <span className="text-gold-500 uppercase tracking-[0.2em] text-sm font-semibold">Advocacia de Elite</span>
+              <div className="mb-4 lg:mb-6 flex items-center gap-3">
+                <div className="h-px w-8 bg-gold-500 shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
+                <span className="text-gold-500 uppercase tracking-[0.2em] text-xs lg:text-sm font-semibold drop-shadow-md">Advocacia de Elite</span>
               </div>
 
-              <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8 leading-[0.95] text-white tracking-tight drop-shadow-2xl">
+              <h1 className="text-5xl md:text-8xl font-serif font-bold mb-6 lg:mb-8 leading-[0.95] text-white tracking-tight drop-shadow-2xl">
                 Blindagem <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-200 to-amber-700 animate-gradient-x"> Jurídica.</span>
               </h1>
 
               <div
                 className="transition-transform duration-500 ease-out"
-                style={{ transform: calculateParallax(25) }}
+                style={{ transform: typeof window !== 'undefined' && window.innerWidth >= 1024 ? calculateParallax(25) : 'none' }}
               >
-                <h2 className="text-2xl text-white/80 font-medium mb-10 max-w-lg border-l-2 border-gold-500/50 pl-6 italic font-serif">
+                <h2 className="text-xl lg:text-2xl text-white/90 lg:text-white/80 font-medium mb-8 lg:mb-10 max-w-lg border-l-2 border-gold-500/50 pl-6 italic font-serif drop-shadow-md">
                   A defesa impecável para o seu legado corporativo.
                 </h2>
 
-                <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
-                  <div className="flex flex-col gap-4">
+                <div className="flex flex-col md:flex-row gap-6 lg:gap-10 items-start md:items-center">
+                  <div className="flex flex-col gap-4 w-full md:w-auto">
                     <button
                       onClick={() => setIsDiagnosticOpen(true)}
-                      className="px-8 py-4 bg-gold-500 text-black-900 font-bold text-lg hover:bg-gold-400 transition-all rounded-none w-fit shadow-[0_4px_25px_0_rgba(212,175,55,0.4)] hover:shadow-[0_8px_35px_0_rgba(212,175,55,0.6)] hover:-translate-y-1 active:translate-y-0"
+                      className="px-8 py-4 bg-gold-500 text-black-900 font-bold text-lg hover:bg-gold-400 transition-all rounded-none w-full md:w-fit shadow-[0_4px_25px_0_rgba(212,175,55,0.4)] hover:shadow-[0_8px_35px_0_rgba(212,175,55,0.6)] hover:-translate-y-1 active:translate-y-0"
                     >
                       Iniciar Diagnóstico
                     </button>
-                    <button className="px-8 py-3 bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 hover:border-gold-500/50 transition-all rounded-none w-fit backdrop-blur-sm">
+                    <button className="px-8 py-3 bg-white/10 lg:bg-white/5 border border-white/20 lg:border-white/10 text-white font-medium hover:bg-white/10 hover:border-gold-500/50 transition-all rounded-none w-full md:w-fit backdrop-blur-sm">
                       Ver Manifesto
                     </button>
                   </div>
 
-                  {/* "Limited Items" Box Style - Static Depth */}
-                  <div className="border border-white/10 p-6 max-w-xs backdrop-blur-md relative group bg-black-900/40 hover:border-gold-500/40 transition-colors">
+                  {/* "Limited Items" Box Style - Desktop Only or subtle on mobile? Keeping it but adjusting style */}
+                  <div className="hidden lg:block border border-white/10 p-6 max-w-xs backdrop-blur-md relative group bg-black-900/40 hover:border-gold-500/40 transition-colors">
                     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-gold-500"></div>
                     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-gold-500"></div>
                     <p className="font-serif italic text-gold-500 text-lg mb-2 text-center group-hover:scale-105 transition-transform">
@@ -126,31 +126,34 @@ export default function Home() {
 
             </div>
 
-            {/* Right Content - Lawyer Image with Deep Parallax */}
+            {/* Right Content - Lawyer Image (Background on Mobile, Side on Desktop) */}
             <div
-              className="lg:col-span-5 relative h-full min-h-[500px] flex items-end justify-center lg:justify-end transition-transform duration-200 ease-out"
-              style={{ transform: calculateParallax(-30) }}
+              className="absolute inset-x-0 bottom-0 top-0 lg:static lg:inset-auto lg:col-span-5 lg:h-full lg:min-h-[500px] flex items-end justify-center lg:justify-end transition-transform duration-200 ease-out z-0 lg:z-auto pointer-events-none lg:pointer-events-auto"
+              style={{ transform: typeof window !== 'undefined' && window.innerWidth >= 1024 ? calculateParallax(-30) : 'none' }}
             >
-              <div className="relative w-full max-w-md aspect-[3/4] overflow-hidden border border-white/10 shadow-[0_0_100px_-20px_rgba(0,0,0,0.8)] bg-black-900 group/image">
+              {/* Mobile Gradient Overlay - Top to Bottom for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-900/40 to-transparent z-10 lg:hidden" />
+
+              <div className="relative w-full h-full lg:h-auto lg:w-full lg:max-w-md lg:aspect-[3/4] overflow-hidden lg:border lg:border-white/10 lg:shadow-[0_0_100px_-20px_rgba(0,0,0,0.8)] bg-black-900 group/image">
                 <Image
                   src="/images/lawyer-hero.png"
                   alt="Advogado Sênior"
                   fill
-                  className="object-cover object-top opacity-100 scale-105 group-hover/image:scale-110 transition-transform duration-1000 ease-out"
+                  className="object-cover object-top opacity-100 scale-100 lg:scale-105 lg:group-hover/image:scale-110 transition-transform duration-1000 ease-out"
                   priority
                 />
-                {/* Glass Overlay Effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black-950 via-transparent to-transparent opacity-60" />
+                {/* Glass Overlay Effect (Desktop) */}
+                <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-black-950 via-transparent to-transparent opacity-60" />
 
-                {/* Moving Shine Effect */}
+                {/* Moving Shine Effect (Desktop) */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/image:animate-shine"
+                  className="hidden lg:block absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/image:animate-shine"
                 />
               </div>
 
-              {/* Decorative floating lines */}
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 border-b-2 border-l-2 border-gold-500/30 z-20 pointer-events-none" />
-              <div className="absolute -top-8 -right-8 w-32 h-32 border-t-2 border-r-2 border-gold-500/30 z-20 pointer-events-none" />
+              {/* Decorative floating lines (Desktop Only) */}
+              <div className="hidden lg:block absolute -bottom-8 -left-8 w-32 h-32 border-b-2 border-l-2 border-gold-500/30 z-20 pointer-events-none" />
+              <div className="hidden lg:block absolute -top-8 -right-8 w-32 h-32 border-t-2 border-r-2 border-gold-500/30 z-20 pointer-events-none" />
             </div>
 
           </div>

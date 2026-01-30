@@ -6,7 +6,12 @@
 
 @layer base {
     body {
-        @apply text-white font-inter min-h-screen selection:bg-digital-gold selection:text-digital-blue-dark;
+        @apply bg-digital-black text-white font-inter min-h-screen;
+    }
+
+    ::selection {
+        background-color: #C5A059;
+        color: #0B1120;
     }
 
     h1,

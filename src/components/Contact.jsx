@@ -1,85 +1,131 @@
 import React, { useState } from 'react';
-import { Send, MessageSquare } from 'lucide-react';
+import { Send, MessageSquare, CheckCircle, ArrowRight } from 'lucide-react';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        message: ''
-    });
+    const [formData, setFormData] = useState({ name: '', message: '' });
+    const [focusedField, setFocusedField] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const { name, message } = formData;
-
-        // Format message for WhatsApp
-        const text = `*Nova solicitação do Portfólio*\n\n*Nome:* ${name}\n*Mensagem:* ${message}`;
-        const encodedText = encodeURIComponent(text);
-
-        // Open WhatsApp
-        window.open(`https://wa.me/5513991353207?text=${encodedText}`, '_blank');
+        const text = `*Nova solicitação do Portfólio (v2)*\n\n*Nome:* ${name}\n*Mensagem:* ${message}`;
+        window.open(`https://wa.me/5513991353207?text=${encodeURIComponent(text)}`, '_blank');
     };
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden backdrop-blur-sm">
-            {/* Background decoration */}
-            <div className="absolute right-0 bottom-0 w-1/3 h-full bg-digital-gold/5 skew-x-12 pointer-events-none" />
+        <section id="contact" className="py-32 relative overflow-hidden bg-[#020408]">
+            {/* Ambient Lighting */}
+            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-digital-primary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-digital-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none opacity-20" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 item-center">
 
-                    <div className="space-y-6">
-                        <h2 className="text-4xl md:text-5xl font-bold font-montserrat">
+                    {/* Left Column: Copy */}
+                    <div className="space-y-8">
+                        <div className="inline-block">
+                            <span className="text-digital-primary text-xs font-bold uppercase tracking-[0.2em] bg-digital-primary/10 px-3 py-1 rounded-full border border-digital-primary/20">
+                                Fale Conosco
+                            </span>
+                        </div>
+
+                        <h2 className="text-5xl md:text-6xl font-bold font-montserrat tracking-tight leading-tight">
                             Pronto para <br />
-                            <span className="text-digital-gold">Escalar?</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">
+                                Escalar?
+                            </span>
                         </h2>
-                        <p className="text-gray-400 text-lg leading-relaxed">
-                            Vamos construir uma presença digital que reflita sua autoridade. Entre em contato diretamente via WhatsApp para uma consulta prioritária.
+
+                        <p className="text-gray-400 text-lg leading-relaxed max-w-md border-l-2 border-digital-primary/30 pl-6">
+                            Construímos ecossistemas digitais de alta performance. Entre em contato para uma análise de viabilidade do seu projeto.
                         </p>
 
-                        <div className="flex items-center gap-4 text-digital-gold mt-8">
-                            <div className="p-3 bg-digital-gold/10 rounded-full animate-pulse">
-                                <MessageSquare className="w-6 h-6" />
+                        <div className="flex items-center gap-6 pt-4">
+                            <div className="flex -space-x-4">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className="w-10 h-10 rounded-full bg-gray-800 border-2 border-[#020408] overflow-hidden flex items-center justify-center">
+                                        <img
+                                            src={`/avatars/partner-${i}.png`}
+                                            alt={`Parceiro ${i}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                ))}
                             </div>
-                            <span className="text-sm uppercase tracking-widest font-bold">Suporte Prioritário</span>
+                            <div className="text-sm">
+                                <p className="text-white font-bold">Junte-se a +50 Parceiros</p>
+                                <p className="text-digital-primary text-xs flex items-center gap-1">
+                                    <CheckCircle className="w-3 h-3" /> Resposta em &lt; 2h
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="bg-digital-blue-dark/50 p-8 border border-white/10 backdrop-blur-md relative group shadow-2xl">
-                        {/* Box Glow */}
-                        <div className="absolute inset-0 bg-digital-gold/5 blur-xl group-hover:bg-digital-gold/10 transition-colors pointer-events-none" />
+                    {/* Right Column: Glass Form */}
+                    <div className="relative">
+                        {/* Decorative Border Gradient */}
+                        <div className="absolute -inset-[1px] bg-gradient-to-r from-digital-secondary via-digital-primary to-digital-secondary rounded-2xl opacity-30 blur-sm"></div>
 
-                        <form onSubmit={handleSubmit} className="relative space-y-6">
-                            <div>
-                                <label className="block text-gray-500 text-xs uppercase tracking-widest mb-2">Nome</label>
-                                <input
-                                    type="text"
-                                    className="w-full bg-digital-blue-medium/50 border border-white/10 p-4 text-white focus:border-digital-gold focus:outline-none transition-colors"
-                                    placeholder="Seu Nome"
-                                    required
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
+                        <div className="relative bg-[#0A0A0A]/90 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 shadow-2xl">
+                            <div className="mb-8">
+                                <h3 className="text-xl font-bold text-white mb-2">Iniciar Conversa</h3>
+                                <p className="text-gray-500 text-sm">Preencha os detalhes abaixo para agendar uma call.</p>
                             </div>
 
-                            <div>
-                                <label className="block text-gray-500 text-xs uppercase tracking-widest mb-2">Visão do Projeto</label>
-                                <textarea
-                                    className="w-full bg-digital-blue-medium/50 border border-white/10 p-4 text-white focus:border-digital-gold focus:outline-none transition-colors h-32 resize-none"
-                                    placeholder="Conte-nos sobre seu projeto..."
-                                    required
-                                    value={formData.message}
-                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                />
-                            </div>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Name Input */}
+                                <div className="group relative">
+                                    <label
+                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'name' || formData.name ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
+                                            }`}
+                                    >
+                                        Seu Nome
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        onFocus={() => setFocusedField('name')}
+                                        onBlur={() => setFocusedField(null)}
+                                        required
+                                    />
+                                </div>
 
-                            <button
-                                type="submit"
-                                className="w-full bg-digital-gold text-digital-black font-bold uppercase tracking-widest py-4 hover:bg-white transition-colors flex items-center justify-center gap-2 group/btn"
-                            >
-                                Iniciar Conversa
-                                <Send className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
-                            </button>
-                        </form>
+                                {/* Message Input */}
+                                <div className="group relative">
+                                    <label
+                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'message' || formData.message ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
+                                            }`}
+                                    >
+                                        Sobre o Projeto
+                                    </label>
+                                    <textarea
+                                        className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none resize-none h-32"
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        onFocus={() => setFocusedField('message')}
+                                        onBlur={() => setFocusedField(null)}
+                                        required
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full group relative overflow-hidden rounded-lg bg-digital-primary p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)]"
+                                >
+                                    <div className="relative z-10 flex items-center justify-center gap-2 text-black font-bold uppercase tracking-widest text-sm">
+                                        Enviar Proposta
+                                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                    </div>
+                                    {/* Buttton Shine Effect */}
+                                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700" />
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                 </div>

@@ -25,8 +25,8 @@ export function ExperienceLedger() {
                     </p>
                 </div>
 
-                {/* Stats Grid with 3D Interaction */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                {/* Stats Grid with 3D Interaction - Mobile Snap Carousel / Desktop Grid */}
+                <div className="flex md:grid md:grid-cols-3 overflow-x-auto snap-x snap-mandatory gap-4 md:gap-12 mb-20 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide pb-4 md:pb-0">
                     {[
                         { label: "Capital Preservado", val: "R$ 450M+", icon: TrendingUp },
                         { label: "Casos Complexos", val: "1.200+", icon: Briefcase },
@@ -35,7 +35,7 @@ export function ExperienceLedger() {
                         <div
                             key={i}
                             className={`
-                            group p-8 rounded-none transition-all duration-500 border border-white/5 bg-black-900/40 relative overflow-hidden
+                            group p-8 rounded-none transition-all duration-500 border border-white/5 bg-black-900/40 relative overflow-hidden flex-shrink-0 w-[85vw] md:w-auto snap-center
                             hover:bg-white/5 hover:border-gold-500/30 hover:scale-[1.02] hover:-translate-y-1
                             ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
                           `}

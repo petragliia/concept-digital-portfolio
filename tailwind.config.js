@@ -7,11 +7,10 @@ export default {
     theme: {
         extend: {
             colors: {
-                'digital-black': '#020408', // Even darker for contrast
-                'digital-blue-dark': '#001233', // Deep Royal Blue
-                'digital-blue-medium': '#002855', // Lighter Navy
-                'digital-gold': '#FFD700', // Brighter Gold for blue contrast
-                'digital-gold-muted': '#C5A059',
+                'digital-black': '#0B1120', // Deepest Navy (Base Background)
+                'digital-primary': '#C5A059', // Classic Gold (Main Accent)
+                'digital-secondary': '#334155', // Graphite Grey (Secondary Backgrounds)
+                'digital-white': '#F8FAFC', // Ice White (Text)
             },
             fontFamily: {
                 montserrat: ['Montserrat', 'sans-serif'],
@@ -38,10 +37,39 @@ export default {
             },
             animation: {
                 'float': 'float 6s ease-in-out infinite',
+                'float-fast': 'float 3s ease-in-out infinite',
                 'pulse-slow': 'pulse-slow 8s ease-in-out infinite',
-                'fade-in-up': 'fadeInUp 0.8s ease-out forwards', // Assuming this might be used elsewhere or should be defined
+                'matrix-scroll': 'matrix 20s linear infinite', // For code rain
+                'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
             }
         },
     },
-    plugins: [],
+    plugins: [
+        function ({ addUtilities }) {
+            const newUtilities = {
+                '.preserve-3d': {
+                    'transform-style': 'preserve-3d',
+                },
+                '.perspective-1000': {
+                    'perspective': '1000px',
+                },
+                '.perspective-2000': {
+                    'perspective': '2000px',
+                },
+                '.backface-hidden': {
+                    'backface-visibility': 'hidden',
+                },
+                '.rotate-x-60': {
+                    'transform': 'rotateX(60deg)',
+                },
+                '.rotate-z-45': {
+                    'transform': 'rotateZ(45deg)',
+                },
+                '.rotate-y-12': {
+                    'transform': 'rotateY(12deg)',
+                },
+            }
+            addUtilities(newUtilities)
+        }
+    ],
 }

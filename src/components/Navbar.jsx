@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-digital-blue-dark/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#020408]/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
                 }`}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
@@ -45,14 +45,14 @@ const Navbar = () => {
                         <button
                             key={item}
                             onClick={() => scrollToSection(item === 'home' ? 'hero' : item)}
-                            className="text-white/80 hover:text-digital-gold text-sm font-bold uppercase tracking-widest transition-colors"
+                            className="text-white hover:text-digital-primary text-sm font-bold uppercase tracking-widest transition-colors"
                         >
                             {item === 'home' ? 'Início' : item === 'method' ? 'Método' : item === 'portfolio' ? 'Projetos' : 'Contato'}
                         </button>
                     ))}
                     <button
                         onClick={() => scrollToSection('contact')}
-                        className="px-6 py-2 border border-digital-gold/30 text-digital-gold hover:bg-digital-gold hover:text-digital-blue-dark transition-all rounded-full text-xs font-bold uppercase tracking-widest"
+                        className="px-6 py-2 border border-digital-primary text-digital-primary hover:bg-digital-primary hover:text-digital-black transition-all rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_25px_rgba(197,160,89,0.5)]"
                     >
                         Fale Conosco
                     </button>

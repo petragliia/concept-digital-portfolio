@@ -4,7 +4,7 @@ export const projects = [
         title: "Concept Booking",
         category: "Plataforma SaaS",
         description: "Um sistema abrangente de reservas e gerenciamento para prestadores de serviços de alto padrão.",
-        image_url: "/assets/projects/project1.png",
+        image_url: "/projects/booking-mockup.png",
         demo_link: "http://localhost:3001" // Placeholder for external app port
     },
     {
@@ -12,7 +12,7 @@ export const projects = [
         title: "Concept Dentista",
         category: "Autoridade Médica",
         description: "Presença digital especializada para profissionais de odontologia de elite, com foco em confiança e excelência estética.",
-        image_url: "/assets/projects/project2.png",
+        image_url: "/projects/dentist-mockup.png",
         demo_link: "http://localhost:3002"
     },
     {
@@ -20,7 +20,7 @@ export const projects = [
         title: "Concept Advogado",
         category: "Autoridade Legal",
         description: "Posicionamento digital premium para escritórios de advocacia, enfatizando credibilidade e autoridade profissional.",
-        image_url: "/assets/projects/project3.png",
+        image_url: "/projects/lawyer-mockup.png",
         demo_link: "http://localhost:3003"
     },
     {
