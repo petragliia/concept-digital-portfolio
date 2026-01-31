@@ -1,9 +1,15 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import IsometricScene from './IsometricScene';
 import MobileHeroHybrid from './MobileHeroHybrid';
+import { openWhatsAppGeneral } from '../portfolio/utils/whatsapp';
 
 const Hero = () => {
+    const handleWhatsAppClick = (e) => {
+        e.preventDefault();
+        openWhatsAppGeneral();
+    };
+
     return (
         <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden p-6 bg-digital-black">
             {/* Background Gradient Effects (Ambient Lighting) */}
@@ -58,12 +64,13 @@ const Hero = () => {
                             </span>
                         </a>
 
-                        <a
-                            href="#metodo"
-                            className="px-8 py-4 border border-white/10 text-white font-medium text-sm tracking-widest uppercase hover:bg-white/5 transition-colors rounded-sm"
+                        <button
+                            onClick={handleWhatsAppClick}
+                            className="group px-8 py-4 border border-white/10 text-white font-medium text-sm tracking-widest uppercase hover:bg-white/5 hover:border-digital-primary/50 hover:text-digital-primary transition-all rounded-sm flex items-center gap-2"
                         >
-                            Ver Método
-                        </a>
+                            <MessageCircle className="w-4 h-4 group-hover:text-digital-primary transition-colors" />
+                            Consultoria VIP
+                        </button>
                     </div>
                 </div>
 
