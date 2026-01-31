@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Hero from '../components/Hero';
-import MethodEvolution from '../components/MethodEvolution';
-import Portfolio from '../components/Portfolio';
-import Contact from '../components/Contact';
+import { Hero } from '../features/hero';
+import { MethodEvolution } from '../features/method';
+import { Portfolio } from '../features/portfolio';
+import { Contact } from '../features/contact';
 
 const Home = () => {
     const location = useLocation();

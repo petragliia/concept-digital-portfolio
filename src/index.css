@@ -6,7 +6,15 @@
 
 @layer base {
     body {
-        @apply bg-digital-black text-white font-inter min-h-screen;
+        @apply bg-digital-black text-white font-inter min-h-[100dvh] overflow-x-hidden;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    #root {
+        @apply min-h-screen;
     }
 
     ::selection {
@@ -22,4 +30,45 @@
     h6 {
         @apply font-montserrat;
     }
+}
+
+@layer utilities {
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    .transform-style-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+
+    .rotate-y-90 {
+        transform: rotateY(90deg);
+    }
+
+    .rotate-x-90 {
+        transform: rotateX(90deg);
+    }
+
+    .translate-z-12 {
+        transform: translateZ(3rem);
+        /* 12 * 0.25rem = 3rem */
+    }
+}
+
+@keyframes spin-slow {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.animate-spin-3d {
+    animation: spin-slow 20s linear infinite;
 }

@@ -11,7 +11,7 @@ export function ExperienceLedger() {
     }, []);
 
     return (
-        <section className="py-24 bg-navy-900 relative border-t border-white/5">
+        <section className="py-24 bg-navy-900 relative border-t border-white/5 overflow-hidden">
             <div className="container mx-auto px-6">
 
                 {/* Header */}

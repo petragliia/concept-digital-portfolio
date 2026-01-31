@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { projects } from '../data/projects';
-import { ProjectModal } from '../features/portfolio';
-import ProjectCarousel from './ProjectCarousel';
+import { projects } from '../../data/projects';
+import ProjectModal from './components/ProjectModal';
+import ProjectCarousel from './components/ProjectCarousel';
 
 const Portfolio = () => {
     const [selectedProject, setSelectedProject] = useState(null);

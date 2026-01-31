@@ -136,7 +136,7 @@ const MethodEvolution = () => {
     const lineHeight = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
     return (
-        <section id="method" ref={containerRef} className="py-32 relative bg-[#050505] overflow-hidden">
+        <section id="method" ref={containerRef} className="py-32 relative bg-[#050505] overflow-clip">
             {/* Background Ambient Light */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-digital-primary/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />

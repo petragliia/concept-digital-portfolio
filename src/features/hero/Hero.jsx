@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import IsometricScene from './IsometricScene';
-import MobileHeroCards from './MobileHeroCards';
+import MobileHeroHybrid from './MobileHeroHybrid';
 
 const Hero = () => {
     return (
@@ -78,11 +78,15 @@ const Hero = () => {
 
                     {/* Mobile Only Floating Cards */}
                     <div className="block lg:hidden w-full">
-                        <MobileHeroCards />
+                        <MobileHeroHybrid />
                     </div>
                 </div>
             </div>
-        </section>
+
+
+            {/* Bottom Gradient Transition */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-digital-black to-transparent z-20 pointer-events-none" />
+        </section >
     );
 };
 

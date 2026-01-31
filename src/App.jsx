@@ -8,7 +8,7 @@ import AllProjects from './pages/AllProjects';
 function App() {
     return (
         <Router>
-            <div className="min-h-screen overflow-x-hidden relative">
+            <div className="min-h-screen relative">
                 <Background />
                 <Navbar />
 
