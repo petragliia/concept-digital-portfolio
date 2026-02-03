@@ -11,7 +11,7 @@ const Hero = () => {
     };
 
     return (
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden p-6 bg-digital-black">
+        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden p-6 bg-gradient-to-b from-[#000B18] to-black">
             {/* Background Gradient Effects (Ambient Lighting) */}
             {/* Top Left: Purple (Software/Cyber) */}
             <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-digital-blue-medium/30 rounded-full blur-[120px] pointer-events-none -translate-x-1/3 -translate-y-1/3" />

@@ -21,7 +21,7 @@ const steps = [
 
 const Method = () => {
     return (
-        <section id="method" className="py-24 relative backdrop-blur-sm border-y border-white/5">
+        <section id="metodo" className="py-24 relative bg-black overflow-hidden border-y border-white/5">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold font-montserrat mb-4">

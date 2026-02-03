@@ -1,0 +1,20 @@
+import { useState, useMemo } from 'react';
+import { projects } from '../../../data/projects';
+
+export const useProjectFilter = () => {
+    const [selectedCategory, setSelectedCategory] = useState("Todos");
+
+    const categories = ["Todos", "Landing Pages", "E-commerce", "Sistemas"];
+
+    const filteredProjects = useMemo(() => {
+        if (selectedCategory === "Todos") return projects;
+        return projects.filter(project => project.category === selectedCategory);
+    }, [selectedCategory]);
+
+    return {
+        selectedCategory,
+        setSelectedCategory,
+        categories,
+        filteredProjects
+    };
+};

@@ -1,48 +1,21 @@
-import React, { useState } from 'react';
-import { projects } from '../data/projects';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ProjectCard, ProjectModal } from '../features/portfolio';
+import React from 'react';
+import { motion } from 'framer-motion';
+import Portfolio from '../features/portfolio/Portfolio';
 
 const AllProjects = () => {
-    const [selectedProject, setSelectedProject] = useState(null);
+    // Reusing the Portfolio component but we might want to hide the "Projetos Selecionados" header 
+    // or customize it. For now, since Portfolio component has its own header internal logic, 
+    // we renders it as is, or we could pass a prop to customize the title if we refactored Portfolio.
+    // Given the current implementation of Portfolio.jsx, it includes the header hardcoded. 
+    // A quick improvement is to wrap it or just render it. 
+    // Ideally we would refactor Portfolio to accept a title prop, but let's stick to the plan of reusing.
 
     return (
-        <section className="pt-32 pb-24 relative min-h-screen">
-            <div className="container mx-auto px-6">
-                {/* Header */}
-                <div className="mb-16">
-                    <Link to="/" className="inline-flex items-center text-digital-gold hover:text-white transition-colors mb-6 uppercase tracking-widest text-xs font-bold gap-2">
-                        <ArrowLeft className="w-4 h-4" /> Voltar para Home
-                    </Link>
-                    <h1 className="text-4xl md:text-6xl font-bold font-montserrat text-white mb-4">
-                        Todos os Projetos
-                    </h1>
-                    <p className="text-gray-400 max-w-2xl text-lg font-light">
-                        Explore nosso portfólio completo de soluções digitais de alta performance.
-                    </p>
-                </div>
+        <div className="pt-20 min-h-screen bg-black">
+            <Portfolio />
 
-                {/* Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                    {projects.map((project) => (
-                        <ProjectCard
-                            key={project.id}
-                            project={project}
-                            onClick={setSelectedProject}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            {/* Project Modal Overlay */}
-            {selectedProject && (
-                <ProjectModal
-                    project={selectedProject}
-                    onClose={() => setSelectedProject(null)}
-                />
-            )}
-        </section>
+            {/* Back to Home Button (Fixed/Floating is nice, or just rely on Navbar) */}
+        </div>
     );
 };
 
