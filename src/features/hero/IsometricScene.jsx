@@ -68,7 +68,7 @@ const IsometricScene = () => {
 
                             {/* Metric Card 1: Revenue */}
                             <div className="col-span-4 bg-white/5 rounded-xl p-3 border border-white/5 backdrop-blur-sm">
-                                <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Revenue</div>
+                                <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Receita</div>
                                 <div className="text-2xl font-bold text-white">$128.4k</div>
                                 <div className="flex items-center gap-1 mt-2">
                                     <div className="text-[10px] text-digital-primary font-bold bg-digital-primary/10 px-1 rounded">+12.5%</div>
@@ -82,7 +82,7 @@ const IsometricScene = () => {
 
                             {/* Metric Card 2: Conversion */}
                             <div className="col-span-4 bg-white/5 rounded-xl p-3 border border-white/5 backdrop-blur-sm">
-                                <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Conversion</div>
+                                <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Conversão</div>
                                 <div className="text-2xl font-bold text-white">4.8%</div>
                                 <div className="w-full bg-gray-800 h-1 mt-3 rounded-full overflow-hidden">
                                     <div className="w-[65%] h-full bg-digital-secondary shadow-[0_0_10px_rgba(96,165,250,0.8)]"></div>
@@ -91,7 +91,7 @@ const IsometricScene = () => {
 
                             {/* Metric Card 3: Active Users */}
                             <div className="col-span-4 bg-white/5 rounded-xl p-3 border border-white/5 backdrop-blur-sm flex flex-col justify-between">
-                                <div className="text-[10px] text-gray-400 uppercase tracking-wider">Active Users</div>
+                                <div className="text-[10px] text-gray-400 uppercase tracking-wider">Usuários Ativos</div>
                                 <div className="text-xl font-bold text-white">2,491</div>
                                 <div className="flex -space-x-1 mt-2">
                                     {[1, 2, 3].map(i => (
@@ -102,7 +102,7 @@ const IsometricScene = () => {
 
                             {/* Main Chart Area (Bottom) */}
                             <div className="col-span-12 bg-white/5 rounded-xl p-4 border border-white/5 h-32 relative overflow-hidden group">
-                                <div className="absolute top-4 left-4 text-[10px] text-gray-400 uppercase">Growth Engine</div>
+                                <div className="absolute top-4 left-4 text-[10px] text-gray-400 uppercase">Motor de Crescimento</div>
 
                                 {/* Abstract Line Chart */}
                                 <svg className="absolute bottom-0 left-0 right-0 w-full h-24 text-digital-primary opacity-80" viewBox="0 0 100 40" preserveAspectRatio="none">
@@ -145,13 +145,13 @@ const IsometricScene = () => {
                 >
                     <div className="flex items-center gap-2 mb-1">
                         <div className="w-2 h-2 bg-digital-primary rounded-full animate-pulse"></div>
-                        <span className="text-[10px] text-white font-bold">Live Sales</span>
+                        <span className="text-[10px] text-white font-bold">Vendas Recentes</span>
                     </div>
                     <div className="space-y-1">
                         <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                             <div className="h-full w-[80%] bg-digital-primary animate-[shimmer_2s_infinite]"></div>
                         </div>
-                        <div className="text-[8px] text-gray-400 text-right">Just now</div>
+                        <div className="text-[8px] text-gray-400 text-right">Agora mesmo</div>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@ const IsometricScene = () => {
                     style={{ animationDelay: '1.2s' }}
                 >
                     <div className="text-digital-secondary text-xs">🚀</div>
-                    <div className="text-[10px] text-white font-bold tracking-wide">SCALING...</div>
+                    <div className="text-[10px] text-white font-bold tracking-wide">ESCALANDO...</div>
                 </div>
 
             </div>

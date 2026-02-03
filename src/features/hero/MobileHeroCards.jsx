@@ -14,7 +14,7 @@ const MobileHeroCards = () => {
                         <div className="p-2 bg-white/5 rounded-lg border border-white/5">
                             <DollarSign className="w-4 h-4 text-digital-primary" />
                         </div>
-                        <span className="text-xs text-gray-400 font-medium tracking-wider uppercase">Revenue</span>
+                        <span className="text-xs text-gray-400 font-medium tracking-wider uppercase">Receita</span>
                     </div>
                     <span className="flex items-center gap-1 text-[10px] font-bold text-digital-primary bg-digital-primary/10 px-2 py-1 rounded-full border border-digital-primary/20">
                         <TrendingUp className="w-3 h-3" />
@@ -39,7 +39,7 @@ const MobileHeroCards = () => {
             <div className="grid grid-cols-2 gap-4">
                 {/* Card 2: Conversion Rate */}
                 <div className="bg-[#020617]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-xl relative overflow-hidden">
-                    <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-2">Conversion</div>
+                    <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-2">Conversão</div>
                     <div className="text-2xl font-bold text-white mb-2">4.8%</div>
                     <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
                         <div className="w-[85%] h-full bg-digital-secondary shadow-[0_0_10px_rgba(96,165,250,0.6)] animate-pulse-slow"></div>
@@ -49,7 +49,7 @@ const MobileHeroCards = () => {
                 {/* Card 3: Active Users */}
                 <div className="bg-[#020617]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-xl relative overflow-hidden flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                        <div className="text-[10px] text-gray-400 uppercase tracking-wider">Active</div>
+                        <div className="text-[10px] text-gray-400 uppercase tracking-wider">Usuários Ativos</div>
                         <Users className="w-3 h-3 text-gray-500" />
                     </div>
                     <div className="text-xl font-bold text-white">2,491</div>
@@ -66,7 +66,7 @@ const MobileHeroCards = () => {
 
             {/* Trust Indicator */}
             <div className="text-center pt-2 pb-6 opacity-60">
-                <p className="text-[10px] uppercase tracking-widest text-gray-500">Trusted by Market Leaders</p>
+                <p className="text-[10px] uppercase tracking-widest text-gray-500">Utilizado por Líderes de Mercado</p>
             </div>
         </div>
     );
