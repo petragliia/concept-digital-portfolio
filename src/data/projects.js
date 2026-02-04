@@ -1,10 +1,10 @@
 export const projects = [
     {
         id: 1,
-        title: "Concept Ecommerce",
+        title: "Concept Ecommerce Baby",
         category: "E-commerce",
-        description: "Plataforma de vendas online de alta performance, focada em conversão e experiência do usuário.",
-        image_url: "/projects/booking-mockup.png",
+        description: "E-commerce especializado em fraldas e produtos infantis, com foco em confiança e cuidado.",
+        image_url: "/projects/concept-ecommerce-baby.png",
         demo_link: "https://concept-ecommerce.vercel.app/"
     },
     {
@@ -36,7 +36,7 @@ export const projects = [
         title: "Concept Ecommerce Cloth",
         category: "E-commerce",
         description: "Loja virtual de roupas com interface moderna e experiência de compra fluida.",
-        image_url: "/projects/concept-ecommerce-baby.png",
+        image_url: "/projects/concept-ecommerce-cloth.png",
         demo_link: "https://concept-ecommerce-cloth.vercel.app/"
     },
     {
