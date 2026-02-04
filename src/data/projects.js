@@ -28,7 +28,31 @@ export const projects = [
         title: "Concept Stock",
         category: "Sistemas",
         description: "Marketplace de ativos digitais e controle de estoque para marcas de luxo.",
-        image_url: "/assets/projects/project1.png",
+        image_url: "/projects/concept-stock-inventory.png",
         demo_link: "https://concept-stock.vercel.app/"
+    },
+    {
+        id: 5,
+        title: "Concept Ecommerce Cloth",
+        category: "E-commerce",
+        description: "Loja virtual de roupas com interface moderna e experiência de compra fluida.",
+        image_url: "/projects/concept-ecommerce-baby.png",
+        demo_link: "https://concept-ecommerce-cloth.vercel.app/"
+    },
+    {
+        id: 6,
+        title: "Concept Booking",
+        category: "Sistemas",
+        description: "Sistema completo de agendamento e gestão de horários para serviços.",
+        image_url: "/projects/concept-booking.png",
+        demo_link: "https://concept-booking.vercel.app/"
+    },
+    {
+        id: 7,
+        title: "Concept Finance",
+        category: "Sistemas",
+        description: "Dashboard financeiro intuitivo para controle de gastos e visualização de dados.",
+        image_url: "/projects/concept-finance.png",
+        demo_link: "https://concept-finance.vercel.app/"
     }
 ];
