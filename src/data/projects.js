@@ -54,5 +54,13 @@ export const projects = [
         description: "Dashboard financeiro intuitivo para controle de gastos e visualização de dados.",
         image_url: "/projects/concept-finance.png",
         demo_link: "https://concept-finance.vercel.app/"
+    },
+    {
+        id: 8,
+        title: "Concept Estética",
+        category: "Landing Pages",
+        description: "Landing page de altíssima conversão para clínicas de estética, focada em luxo, rejuvenescimento e captação de clientes.",
+        image_url: "/projects/concept-estetica.png",
+        demo_link: "https://concept-estetica.vercel.app/"
     }
 ];
