@@ -5,9 +5,14 @@ import Background from './components/Background';
 import Home from './pages/Home';
 import AllProjects from './pages/AllProjects';
 
+import PixelTracker from './components/PixelTracker';
+import CookieConsent from './components/CookieConsent';
+
 function App() {
     return (
         <Router>
+            <PixelTracker />
+            <CookieConsent />
             <div className="min-h-screen relative">
                 <Background />
                 <Navbar />
