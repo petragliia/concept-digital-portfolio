@@ -62,5 +62,29 @@ export const projects = [
         description: "Landing page de altíssima conversão para clínicas de estética, focada em luxo, rejuvenescimento e captação de clientes.",
         image_url: "/projects/concept-estetica.png",
         demo_link: "https://concept-estetica.vercel.app/"
+    },
+    {
+        id: 9,
+        title: "Concept Imobiliária Luxo",
+        category: "Landing Pages",
+        description: "Landing page premium para imóveis de alto padrão, com design sofisticado e foco em conversão.",
+        image_url: "/projects/concept-imobiliaria.png",
+        demo_link: "https://concept-imobiliaria-luxo.vercel.app/"
+    },
+    {
+        id: 10,
+        title: "Concept Empreiteira",
+        category: "Landing Pages",
+        description: "Landing page profissional para empresas de construção e engenharia, focada em autoridade e confiança.",
+        image_url: "/projects/concept-empreiteira.png",
+        demo_link: "https://concept-empreiteira.vercel.app/"
+    },
+    {
+        id: 11,
+        title: "Concept Empreiteira 2",
+        category: "Landing Pages",
+        description: "Variante estratégica de landing page para empreiteiras, otimizada para captação de leads qualificados.",
+        image_url: "/projects/concept-empreiteira2.png",
+        demo_link: "https://concept-empreiteira2.vercel.app/"
     }
 ];
