@@ -8,11 +8,18 @@ const Contact = () => {
     const [formData, setFormData] = useState({ name: '', message: '' });
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
+    const [contactMethod, setContactMethod] = useState<'email' | 'whatsapp'>('email');
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const { name, message } = formData;
-        const text = `*Nova solicitação do Portfólio (v2)*\n\n*Nome:* ${name}\n*Mensagem:* ${message}`;
-        window.open(`https://wa.me/5513991353207?text=${encodeURIComponent(text)}`, '_blank');
+
+        if (contactMethod === 'whatsapp') {
+            const text = `*Nova solicitação do Portfólio (v2)*\n\n*Nome:* ${name}\n*Mensagem:* ${message}`;
+            window.open(`https://wa.me/5513991353207?text=${encodeURIComponent(text)}`, '_blank');
+        } else {
+            window.location.href = `mailto:sacconceptdigital@gmail.com?subject=Nova solicitação do Portfólio (v2)&body=Nome: ${name}%0D%0AMensagem: ${message}`;
+        }
     };
 
     return (
@@ -82,6 +89,30 @@ const Contact = () => {
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Contact Method Toggle */}
+                                <div className="flex gap-2 mb-6 p-1 bg-white/5 rounded-lg w-fit border border-white/5">
+                                    <button
+                                        type="button"
+                                        onClick={() => setContactMethod('email')}
+                                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'email'
+                                                ? 'bg-digital-primary text-black shadow-lg'
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            }`}
+                                    >
+                                        Email
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setContactMethod('whatsapp')}
+                                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'whatsapp'
+                                                ? 'bg-[#25D366] text-black shadow-lg'
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            }`}
+                                    >
+                                        WhatsApp
+                                    </button>
+                                </div>
+
                                 {/* Name Input */}
                                 <div className="group relative">
                                     <label
@@ -125,10 +156,11 @@ const Contact = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full group relative overflow-hidden rounded-lg bg-digital-primary p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)]"
+                                    className={`w-full group relative overflow-hidden rounded-lg p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] ${contactMethod === 'whatsapp' ? 'bg-[#25D366]' : 'bg-digital-primary'
+                                        }`}
                                 >
                                     <div className="relative z-10 flex items-center justify-center gap-2 text-black font-bold uppercase tracking-widest text-sm">
-                                        Enviar Proposta
+                                        {contactMethod === 'whatsapp' ? 'Iniciar no WhatsApp' : 'Enviar Email'}
                                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                     </div>
                                     {/* Buttton Shine Effect */}
