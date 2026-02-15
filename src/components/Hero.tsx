@@ -1,11 +1,16 @@
+"use client";
+
 import React from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import IsometricScene from './IsometricScene';
-import MobileHeroHybrid from './MobileHeroHybrid';
-import { openWhatsAppGeneral } from '../portfolio/utils/whatsapp';
+// @ts-ignore
+import IsometricScene from '@/features/hero/IsometricScene';
+// @ts-ignore
+import MobileHeroHybrid from '@/features/hero/MobileHeroHybrid';
+import { openWhatsAppGeneral } from '@/features/portfolio/utils/whatsapp';
+import Link from 'next/link';
 
 const Hero = () => {
-    const handleWhatsAppClick = (e) => {
+    const handleWhatsAppClick = (e: React.MouseEvent) => {
         e.preventDefault();
         openWhatsAppGeneral();
     };
@@ -54,10 +59,12 @@ const Hero = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                        {/* Using Link for smooth scroll if handled by Header logic or just anchor */}
+                        {/* Since Header handles scrollTo logic globally or we can use the same logic */}
+                        {/* But here simply #portfolio works because we are on the page. */}
                         <a
                             href="#portfolio"
                             className="group relative px-8 py-4 bg-gradient-to-r from-digital-primary via-[#D4AF37] to-digital-primary text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(197,160,89,0.6)] overflow-hidden rounded-sm ring-1 ring-white/20"
-                            aria-label="Ir para seção de projetos"
                         >
                             <span className="relative z-10 flex items-center gap-2">
                                 Iniciar Projeto
@@ -68,7 +75,6 @@ const Hero = () => {
                         <button
                             onClick={handleWhatsAppClick}
                             className="group px-8 py-4 border border-white/10 text-white font-medium text-sm tracking-widest uppercase hover:bg-white/5 hover:border-digital-primary/50 hover:text-digital-primary transition-all rounded-sm flex items-center gap-2"
-                            aria-label="Iniciar conversa no WhatsApp"
                         >
                             <MessageCircle className="w-4 h-4 group-hover:text-digital-primary transition-colors" />
                             Consultoria VIP

@@ -1,8 +1,17 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
+import { Project } from '@/types/project'; // We'll define this type
 
-const ProjectCard = ({ project, onClick }) => {
+interface ProjectCardProps {
+    project: Project;
+    onClick: () => void;
+}
+
+const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
     return (
         <motion.div
             layoutId={`project-card-${project.id}`}
@@ -16,15 +25,20 @@ const ProjectCard = ({ project, onClick }) => {
             {/* Image container */}
             <div className="h-64 w-full relative overflow-hidden shrinkage-0">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10 opacity-60" />
-                <motion.img
+                <motion.div
+                    className="relative w-full h-full"
                     layoutId={`project-image-${project.id}`}
-                    src={project.image_url}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async"
-                />
-                {/* Category Badge - positioned on top of image */}
+                >
+                    <Image
+                        src={project.image_url}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                </motion.div>
+
+                {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-20">
                     <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
                         {project.category}

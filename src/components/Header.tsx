@@ -1,12 +1,15 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-const Navbar = () => {
+const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,10 +19,10 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (id) => {
+    const scrollToSection = (id: string) => {
         setIsMobileMenuOpen(false);
-        if (location.pathname !== '/') {
-            navigate(`/?scrollTo=${id}`);
+        if (pathname !== '/') {
+            router.push(`/?scrollTo=${id}`);
         } else {
             const element = document.getElementById(id);
             if (element) {
@@ -32,17 +35,26 @@ const Navbar = () => {
         <nav
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-black/10 backdrop-blur-xl border-b border-white/5 py-4 shadow-lg' : 'bg-transparent py-6'
                 }`}
+            role="navigation"
+            aria-label="Main Navigation"
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <div className="w-16 md:w-20 cursor-pointer" onClick={() => scrollToSection('hero')}>
-                    <img
+                <div
+                    className="w-16 md:w-20 cursor-pointer relative h-10 md:h-12"
+                    onClick={() => scrollToSection('hero')}
+                    role="button"
+                    aria-label="Go to Homepage"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && scrollToSection('hero')}
+                >
+                    <Image
                         src="/logo-concept.png"
-                        alt="Concept Digital"
-                        className="w-full h-auto object-contain"
-                        width="112"
-                        height="61"
-                        loading="eager"
+                        alt="Concept Digital Logo"
+                        fill
+                        sizes="(max-width: 768px) 64px, 80px"
+                        className="object-contain"
+                        priority
                     />
                 </div>
 
@@ -60,6 +72,7 @@ const Navbar = () => {
                     <button
                         onClick={() => scrollToSection('contact')}
                         className="px-6 py-2 border border-digital-primary text-digital-primary hover:bg-digital-primary hover:text-digital-black transition-all rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_25px_rgba(197,160,89,0.5)]"
+                        aria-label="Entre em Contato"
                     >
                         Fale Conosco
                     </button>
@@ -69,9 +82,10 @@ const Navbar = () => {
                 <button
                     className="md:hidden text-white"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    aria-label="Abrir menu de navegação"
+                    aria-label={isMobileMenuOpen ? "Fechar Menu" : "Abrir Menu"}
+                    aria-expanded={isMobileMenuOpen}
                 >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
+                    {isMobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
                 </button>
             </div>
 
@@ -93,4 +107,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Header;
