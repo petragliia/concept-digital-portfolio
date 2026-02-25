@@ -108,9 +108,9 @@ const MobileHeroHybrid = () => {
                     <AnimatePresence mode="wait">
                         <motion.h2
                             key={index}
-                            initial={{ y: 30, opacity: 0, filter: "blur(12px)" }}
-                            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                            exit={{ y: -30, opacity: 0, filter: "blur(12px)" }}
+                            initial={{ y: 30, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -30, opacity: 0 }}
                             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} // Custom ease
                             className={`text-5xl font-black font-montserrat tracking-tighter ${words[index].color} drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]`}
                         >

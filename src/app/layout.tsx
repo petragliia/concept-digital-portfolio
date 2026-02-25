@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
+import { Suspense } from "react";
 import PixelTracker from "../components/PixelTracker";
 import CookieConsent from "../components/CookieConsent";
 
@@ -43,9 +44,13 @@ export default function RootLayout({
     return (
         <html lang="pt-BR" className={`${inter.variable} ${montserrat.variable} scroll-smooth`}>
             <body className={inter.className}>
-                <PixelTracker />
+                <Suspense fallback={null}>
+                    <PixelTracker />
+                </Suspense>
                 <CookieConsent />
-                <Header />
+                <Suspense fallback={<nav className="py-6" />}>
+                    <Header />
+                </Suspense>
                 <main className="min-h-screen relative overflow-x-hidden">
                     {children}
                 </main>

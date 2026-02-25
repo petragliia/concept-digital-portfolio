@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
-
+import Image from 'next/image';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', message: '' });
@@ -57,12 +57,12 @@ const Contact = () => {
                             <div className="flex -space-x-4">
                                 {[1, 2, 3].map((i) => (
                                     <div key={i} className="w-10 h-10 rounded-full bg-gray-800 border-2 border-[#020408] overflow-hidden flex items-center justify-center relative">
-                                        <img
+                                        <Image
                                             src={`/avatars/partner-${i}.png`}
                                             alt={`Parceiro ${i}`}
-                                            className="w-full h-full object-cover"
-                                            width="40"
-                                            height="40"
+                                            fill
+                                            sizes="40px"
+                                            className="object-cover"
                                             loading="lazy"
                                         />
                                     </div>
@@ -95,8 +95,8 @@ const Contact = () => {
                                         type="button"
                                         onClick={() => setContactMethod('email')}
                                         className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'email'
-                                                ? 'bg-digital-primary text-black shadow-lg'
-                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            ? 'bg-digital-primary text-black shadow-lg'
+                                            : 'text-gray-400 hover:text-white hover:bg-white/5'
                                             }`}
                                     >
                                         Email
@@ -105,8 +105,8 @@ const Contact = () => {
                                         type="button"
                                         onClick={() => setContactMethod('whatsapp')}
                                         className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'whatsapp'
-                                                ? 'bg-[#25D366] text-black shadow-lg'
-                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            ? 'bg-[#25D366] text-black shadow-lg'
+                                            : 'text-gray-400 hover:text-white hover:bg-white/5'
                                             }`}
                                     >
                                         WhatsApp

@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Background from './components/Background';
-import Home from './pages/Home';
-import AllProjects from './pages/AllProjects';
+import Home from './views/Home';
+import AllProjects from './views/AllProjects';
 
 import PixelTracker from './components/PixelTracker';
 import CookieConsent from './components/CookieConsent';

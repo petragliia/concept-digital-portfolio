@@ -24,7 +24,7 @@ const HomeContent = () => {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        const scrollTo = searchParams.get('scrollTo');
+        const scrollTo = searchParams?.get('scrollTo');
         if (scrollTo) {
             // Slight delay to ensure content is loaded/rendered
             setTimeout(() => {

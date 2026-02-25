@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -48,10 +49,13 @@ const Header = () => {
                     tabIndex={0}
                     onKeyDown={(e) => e.key === 'Enter' && scrollToSection('hero')}
                 >
-                    <img
+                    <Image
                         src="/logo-concept.png"
                         alt="Concept Digital Logo"
-                        className="object-contain w-full h-full"
+                        fill
+                        className="object-contain"
+                        priority
+                        sizes="(max-width: 768px) 64px, 80px"
                     />
                 </div>
 
