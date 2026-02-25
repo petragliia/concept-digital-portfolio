@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { Suspense } from "react";
 import PixelTracker from "../components/PixelTracker";
 import CookieConsent from "../components/CookieConsent";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["400", "500", "600", "700", "800"] });
@@ -54,6 +55,7 @@ export default function RootLayout({
                 <main className="min-h-screen relative overflow-x-hidden">
                     {children}
                 </main>
+                <SpeedInsights />
 
                 {/* Simple Footer reused from App.jsx */}
                 <footer className="py-8 text-center text-gray-400 text-xs uppercase tracking-widest border-t border-white/5 bg-digital-black">
