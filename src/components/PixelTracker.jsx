@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { initPixel, trackPageView } from '../lib/pixel';
 
 const PixelTracker = () => {
-    const location = useLocation();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         initPixel();
@@ -11,7 +12,7 @@ const PixelTracker = () => {
 
     useEffect(() => {
         trackPageView();
-    }, [location]);
+    }, [pathname, searchParams]);
 
     return null;
 };

@@ -7,7 +7,6 @@ import IsometricScene from '@/features/hero/IsometricScene';
 // @ts-ignore
 import MobileHeroHybrid from '@/features/hero/MobileHeroHybrid';
 import { openWhatsAppGeneral } from '@/features/portfolio/utils/whatsapp';
-import Link from 'next/link';
 
 const Hero = () => {
     const handleWhatsAppClick = (e: React.MouseEvent) => {

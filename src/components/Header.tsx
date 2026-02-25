@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -48,13 +48,10 @@ const Header = () => {
                     tabIndex={0}
                     onKeyDown={(e) => e.key === 'Enter' && scrollToSection('hero')}
                 >
-                    <Image
+                    <img
                         src="/logo-concept.png"
                         alt="Concept Digital Logo"
-                        fill
-                        sizes="(max-width: 768px) 64px, 80px"
-                        className="object-contain"
-                        priority
+                        className="object-contain w-full h-full"
                     />
                 </div>
 
