@@ -37,7 +37,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="w-16 md:w-20 cursor-pointer" onClick={() => scrollToSection('hero')}>
                     <img
-                        src="/logo-concept.png"
+                        src="/logo-concept2.png"
                         alt="Concept Digital"
                         className="w-full h-auto object-contain"
                         width="112"
