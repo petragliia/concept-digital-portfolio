@@ -130,6 +130,7 @@ const Contact = () => {
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         onFocus={() => setFocusedField('name')}
                                         onBlur={() => setFocusedField(null)}
+                                        aria-label="Seu Nome"
                                         required
                                     />
                                 </div>
@@ -150,6 +151,7 @@ const Contact = () => {
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         onFocus={() => setFocusedField('message')}
                                         onBlur={() => setFocusedField(null)}
+                                        aria-label="Sobre o Projeto"
                                         required
                                     />
                                 </div>

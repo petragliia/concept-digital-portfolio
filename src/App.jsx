@@ -13,7 +13,7 @@ function App() {
         <Router>
             <PixelTracker />
             <CookieConsent />
-            <div className="min-h-screen relative">
+            <main className="min-h-screen relative">
                 <Background />
                 <Navbar />
 
@@ -23,10 +23,10 @@ function App() {
                 </Routes>
 
                 {/* Simple Footer */}
-                <footer className="py-8 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5">
+                <footer className="py-8 text-center text-gray-400 text-xs uppercase tracking-widest border-t border-white/5">
                     &copy; {new Date().getFullYear()} Concept Digital. Todos os Direitos Reservados.
                 </footer>
-            </div>
+            </main>
         </Router>
     );
 }

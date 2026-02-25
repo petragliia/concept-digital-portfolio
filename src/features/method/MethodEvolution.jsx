@@ -259,7 +259,7 @@ const MethodNode = ({ step, index }) => {
                         {/* Content */}
                         <div className="relative z-10">
                             <div className="flex items-center justify-between mb-6">
-                                <span className="text-4xl font-bold text-white/5 font-montserrat">{step.id}</span>
+                                <span className="text-4xl font-bold text-gray-500 font-montserrat">{step.id}</span>
                                 <div className="p-3 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
                                     <step.icon className="w-6 h-6 text-digital-primary" />
                                 </div>
@@ -268,7 +268,7 @@ const MethodNode = ({ step, index }) => {
                             <h3 className="text-2xl font-bold text-white mb-2 font-montserrat group-hover:text-digital-primary transition-colors">
                                 {step.title}
                             </h3>
-                            <p className="text-digital-secondary text-sm font-bold uppercase tracking-widest mb-4">
+                            <p className="text-gray-300 text-sm font-bold uppercase tracking-widest mb-4">
                                 {step.subtitle}
                             </p>
                             <p className="text-gray-400 leading-relaxed text-sm">
@@ -318,7 +318,7 @@ const ResultCard = ({ result }) => {
                     <h3 className="text-xl font-bold text-white mb-2 font-montserrat group-hover:text-digital-primary transition-colors">
                         {result.title}
                     </h3>
-                    <p className="text-digital-secondary text-xs font-bold uppercase tracking-widest mb-3">
+                    <p className="text-gray-300 text-xs font-bold uppercase tracking-widest mb-3">
                         {result.subtitle}
                     </p>
                     <p className="text-gray-400 leading-relaxed text-sm mb-6">

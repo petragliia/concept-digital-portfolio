@@ -50,7 +50,7 @@ const Header = () => {
                     onKeyDown={(e) => e.key === 'Enter' && scrollToSection('hero')}
                 >
                     <Image
-                        src="/logo-concept.png"
+                        src="/logo-concept2.png"
                         alt="Concept Digital Logo"
                         fill
                         className="object-contain"

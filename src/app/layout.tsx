@@ -56,7 +56,7 @@ export default function RootLayout({
                 </main>
 
                 {/* Simple Footer reused from App.jsx */}
-                <footer className="py-8 text-center text-gray-500 text-xs uppercase tracking-widest border-t border-white/5 bg-digital-black">
+                <footer className="py-8 text-center text-gray-400 text-xs uppercase tracking-widest border-t border-white/5 bg-digital-black">
                     &copy; {new Date().getFullYear()} Concept Digital. Todos os Direitos Reservados.
                 </footer>
             </body>
