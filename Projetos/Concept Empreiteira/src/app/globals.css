@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  
+  /* Custom Colors based on PRD */
+  --color-primary: #0f172a; /* slate-900 */
+  --color-secondary: #f3f4f6; /* gray-100 */
+  --color-accent: #f59e0b; /* amber-500 */
+  --color-accent-dark: #ea580c; /* orange-600 */
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply bg-white text-slate-900;
+  }
+}
+
+/* Animation Utilities */
+@layer utilities {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}

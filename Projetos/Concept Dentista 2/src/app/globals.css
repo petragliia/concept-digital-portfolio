@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0056D2;
+  --color-secondary: #E6F0FA;
+  --color-accent: #0EA5E9;
+  --color-dark: #1A1A1A;
+  
+  --color-background: #ffffff;
+  --color-foreground: #1A1A1A;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Custom Utilities if needed */
+@layer utilities {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
