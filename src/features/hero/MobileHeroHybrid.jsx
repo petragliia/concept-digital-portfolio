@@ -7,34 +7,6 @@ const words = [
     { text: "FUTURO", color: "text-white" }
 ];
 
-const Cuboid = ({ width, height, x, y }) => {
-    // Determine dimensions for faces based on props
-    // This is a simplified CSS 3D cuboid builder
-    const style = {
-        width: width,
-        height: height,
-        left: x,
-        top: y,
-    };
-
-    return (
-        <div className="absolute transform-style-3d" style={style}>
-            {/* Front */}
-            <div className="absolute inset-0 bg-digital-primary/20 border border-digital-primary/40 translate-z-6 backdrop-blur-sm" />
-            {/* Back */}
-            <div className="absolute inset-0 bg-digital-primary/20 border border-digital-primary/40 -translate-z-6 backdrop-blur-sm" />
-            {/* Left */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 bg-digital-secondary/20 border border-digital-secondary/40 origin-left -rotate-y-90 translate-x-0" />
-            {/* Right */}
-            <div className="absolute right-0 top-0 bottom-0 w-12 bg-digital-secondary/20 border border-digital-secondary/40 origin-right rotate-y-90 translate-x-0" />
-            {/* Top */}
-            <div className="absolute top-0 left-0 right-0 h-12 bg-white/10 border border-white/20 origin-top rotate-x-90 translate-y-0" />
-            {/* Bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-12 bg-white/10 border border-white/20 origin-bottom -rotate-x-90 translate-y-0" />
-        </div>
-    );
-};
-
 const MobileHeroHybrid = () => {
     const [index, setIndex] = useState(0);
 

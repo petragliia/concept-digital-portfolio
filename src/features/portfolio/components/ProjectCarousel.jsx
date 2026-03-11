@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 const ProjectCarousel = ({ projects, onProjectClick }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,11 +10,12 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
     // Auto-play interval
     useEffect(() => {
         const timer = setInterval(() => {
-            nextSlide();
+            setDirection(1);
+            setCurrentIndex((prev) => (prev + 1) % projects.length);
         }, 5000); // 5 seconds auto-play
 
         return () => clearInterval(timer);
-    }, [currentIndex]);
+    }, [projects.length]);
 
     const nextSlide = () => {
         setDirection(1);
@@ -35,18 +37,9 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
         }
     }
 
-    // Calculate indices for circular display
-    const getVisibleProjects = () => {
-        const total = projects.length;
-        if (total === 0) return [];
+    // Delete this dead code block
 
-        // Simple logic for 3 visible items if possible, but handling array wrapping
-        const prev = (currentIndex - 1 + total) % total;
-        const next = (currentIndex + 1) % total;
-        return [prev, currentIndex, next];
-    };
 
-    const visibleIndices = getVisibleProjects();
 
     const variants = {
         center: {
@@ -142,10 +135,12 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
                                 }}
                             >
                                 {/* Image */}
-                                <img
+                                <Image
                                     src={project.image_url}
                                     alt={project.title}
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    sizes="(max-width: 768px) 300px, 600px"
+                                    className="object-cover"
                                 />
 
                                 {/* Overlay Gradient */}

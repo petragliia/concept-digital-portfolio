@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-// @ts-ignore
 import IsometricScene from '@/features/hero/IsometricScene';
-// @ts-ignore
 import MobileHeroHybrid from '@/features/hero/MobileHeroHybrid';
 import { openWhatsAppGeneral } from '@/features/portfolio/utils/whatsapp';
 

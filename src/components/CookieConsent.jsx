@@ -42,7 +42,6 @@ const CookieConsent = () => {
                             <Cookie className="w-8 h-8 text-digital-primary" />
                         </div>
 
-                        {/* Content */}
                         <div className="flex-1 mb-6 md:mb-0">
                             <h3 className="text-lg font-bold font-montserrat text-white mb-2 flex items-center gap-2">
                                 <Cookie className="w-5 h-5 text-digital-primary md:hidden" />
@@ -50,7 +49,7 @@ const CookieConsent = () => {
                             </h3>
                             <p className="text-gray-400 text-sm leading-relaxed">
                                 Utilizamos cookies para melhorar sua experiência e analisar o tráfego do site.
-                                Ao clicar em "Aceitar", você concorda com o uso de cookies para estes fins.
+                                Ao clicar em &quot;Aceitar&quot;, você concorda com o uso de cookies para estes fins.
                             </p>
                         </div>
 

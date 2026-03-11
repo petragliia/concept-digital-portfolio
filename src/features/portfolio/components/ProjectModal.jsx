@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
+import { X, ExternalLink, ArrowRight } from 'lucide-react';
 import { openWhatsAppProject } from '../utils/whatsapp';
 
 const ProjectModal = ({ project, onClose }) => {

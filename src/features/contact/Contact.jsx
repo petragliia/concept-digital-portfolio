@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, MessageSquare, CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', message: '' });
@@ -46,11 +47,13 @@ const Contact = () => {
                         <div className="flex items-center gap-6 pt-4">
                             <div className="flex -space-x-4">
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full bg-gray-800 border-2 border-[#020408] overflow-hidden flex items-center justify-center">
-                                        <img
+                                    <div key={i} className="w-10 h-10 rounded-full bg-gray-800 border-2 border-[#020408] overflow-hidden flex items-center justify-center relative">
+                                        <Image
                                             src={`/avatars/partner-${i}.png`}
                                             alt={`Parceiro ${i}`}
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            sizes="40px"
+                                            className="object-cover"
                                         />
                                     </div>
                                 ))}
@@ -79,18 +82,22 @@ const Contact = () => {
                                 {/* Name Input */}
                                 <div className="group relative">
                                     <label
+                                        htmlFor="name"
                                         className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'name' || formData.name ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
                                             }`}
                                     >
                                         Seu Nome
                                     </label>
                                     <input
+                                        id="name"
+                                        name="name"
                                         type="text"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         onFocus={() => setFocusedField('name')}
                                         onBlur={() => setFocusedField(null)}
+                                        aria-label="Seu Nome"
                                         required
                                     />
                                 </div>
@@ -98,17 +105,21 @@ const Contact = () => {
                                 {/* Message Input */}
                                 <div className="group relative">
                                     <label
+                                        htmlFor="message"
                                         className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'message' || formData.message ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
                                             }`}
                                     >
                                         Sobre o Projeto
                                     </label>
                                     <textarea
+                                        id="message"
+                                        name="message"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none resize-none h-32"
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         onFocus={() => setFocusedField('message')}
                                         onBlur={() => setFocusedField(null)}
+                                        aria-label="Sobre o Projeto"
                                         required
                                     />
                                 </div>

@@ -1,52 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from 'framer-motion';
-import { Lightbulb, Palette, Rocket, Trophy, TrendingDown, Zap, ShieldCheck, MousePointerClick, Smartphone, DollarSign } from 'lucide-react';
-
-const steps = [
-    {
-        id: '01',
-        title: "A Visão",
-        subtitle: "O Potencial Oculto",
-        description: "Não olhamos apenas para o que você é, mas para o que você pode se tornar. Identificamos as oportunidades de mercado que outros ignoram.",
-        icon: Lightbulb,
-        color: "from-blue-500/20 to-purple-500/20",
-        glow: "group-hover:shadow-blue-500/50"
-    },
-    {
-        id: '02',
-        title: "A Criação",
-        subtitle: "Design & Estratégia",
-        description: "Transformamos ideias abstratas em experiências digitais tangíveis. Estética de nível global fundida com psicologia do consumidor.",
-        icon: Palette,
-        color: "from-amber-500/20 to-orange-500/20",
-        glow: "group-hover:shadow-amber-500/50"
-    },
-    {
-        id: '03',
-        title: "A Ascensão",
-        subtitle: "Engenharia de Alta Performance",
-        description: "Construímos a infraestrutura robusta necessária para o hipercrescimento. Velocidade, segurança e escalabilidade sem concessões.",
-        icon: Rocket,
-        color: "from-emerald-500/20 to-cyan-500/20",
-        glow: "group-hover:shadow-emerald-500/50"
-    },
-    {
-        id: '04',
-        title: "O Legado",
-        subtitle: "Dominação de Mercado",
-        description: "O resultado final não é apenas um site, é a liderança do seu setor. Sua marca se torna a referência inquestionável.",
-        icon: Trophy,
-        color: "from-rose-500/20 to-pink-500/20",
-        glow: "group-hover:shadow-rose-500/50"
-    }
-];
+import { motion, useTransform, useMotionValue, useInView } from 'framer-motion';
+import { TrendingDown, Zap, ShieldCheck, MousePointerClick, Smartphone, DollarSign } from 'lucide-react';
 
 const results = [
     {
         id: 'R1',
-        title: "Google Ads com Desconto?",
-        subtitle: "O Segredo do Índice de Qualidade",
-        description: "O Google cobra menos por clique de sites rápidos e bem estruturados. Nossas páginas reduzem seu CPC, fazendo seu orçamento render mais.",
+        title: "ROI Otimizado",
+        subtitle: "Tráfego Eficiente",
+        description: "Estrutura otimizada que reduz seu custo de aquisição e faz seu orçamento render muito mais.",
         icon: TrendingDown,
         visual: "ROIGraph",
         color: "from-yellow-500/20 to-orange-500/20",
@@ -54,9 +15,9 @@ const results = [
     },
     {
         id: 'R2',
-        title: "Velocidade é Lucro",
+        title: "Zero Atrito",
         subtitle: "Carregamento Instantâneo",
-        description: "53% dos usuários abandonam sites que demoram mais de 3s. Nossas páginas carregam instantaneamente, garantindo que você não perca clientes.",
+        description: "Performance extrema para garantir que você não perca nenhum lead por causa de lentidão.",
         icon: Zap,
         visual: "SpeedCounter",
         color: "from-blue-500/20 to-cyan-500/20",
@@ -64,9 +25,9 @@ const results = [
     },
     {
         id: 'R3',
-        title: "Autoridade Inquestionável",
-        subtitle: "Design que Transmite Confiança",
-        description: "Para nichos de alto padrão como Advocacia e Saúde, a estabilidade técnica é percebida como competência profissional. Blindamos sua imagem online.",
+        title: "Percepção Premium",
+        subtitle: "Autoridade Visual",
+        description: "Design de alto padrão que transmite credibilidade instantânea e reforça seu posicionamento.",
         icon: ShieldCheck,
         visual: "AuthorityVisual",
         color: "from-purple-500/20 to-pink-500/20",
@@ -239,62 +200,6 @@ const AuthorityVisual = () => {
     );
 };
 
-const MethodNode = ({ step, index }) => {
-    const isEven = index % 2 === 0;
-
-    return (
-        <div className={`flex items-center justify-between w-full mb-24 relative ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
-            {/* Content Side */}
-            <div className="w-full md:w-5/12 relative z-10 group">
-                <TiltCard className="relative w-full">
-                    {/* Holographic Glass Card */}
-                    <div className={`
-                        relative overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl p-8
-                        transition-all duration-500 hover:border-white/20 hover:-translate-y-2
-                        ${step.glow} shadow-2xl
-                    `}>
-                        {/* Gradient Glow Overlay */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-                        {/* Content */}
-                        <div className="relative z-10">
-                            <div className="flex items-center justify-between mb-6">
-                                <span className="text-4xl font-bold text-gray-500 font-montserrat">{step.id}</span>
-                                <div className="p-3 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
-                                    <step.icon className="w-6 h-6 text-digital-primary" />
-                                </div>
-                            </div>
-
-                            <h3 className="text-2xl font-bold text-white mb-2 font-montserrat group-hover:text-digital-primary transition-colors">
-                                {step.title}
-                            </h3>
-                            <p className="text-gray-300 text-sm font-bold uppercase tracking-widest mb-4">
-                                {step.subtitle}
-                            </p>
-                            <p className="text-gray-400 leading-relaxed text-sm">
-                                {step.description}
-                            </p>
-                        </div>
-                    </div>
-                </TiltCard>
-            </div>
-
-            {/* Center Node */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-20">
-                <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="w-4 h-4 rounded-full bg-digital-primary shadow-[0_0_20px_rgba(255,215,0,0.5)] border-4 border-[#0A0A0A]"
-                />
-            </div>
-
-            {/* Empty Side for alignment */}
-            <div className="w-full md:w-5/12 hidden md:block" />
-        </div>
-    );
-};
-
 const ResultCard = ({ result }) => {
     const VisualComponent = {
         "ROIGraph": ROIGraph,
@@ -332,17 +237,8 @@ const ResultCard = ({ result }) => {
 };
 
 const MethodEvolution = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    // 0.8 to stop before the results section starts fully
-    const lineHeight = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
-
     return (
-        <section id="method" ref={containerRef} className="py-20 relative bg-[#050505] overflow-clip">
+        <section id="method" className="py-20 relative bg-gradient-to-b from-black to-[#050505] overflow-clip">
             {/* Background Ambient Light */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-digital-primary/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
@@ -370,23 +266,6 @@ const MethodEvolution = () => {
                     <p className="max-w-xl mx-auto text-gray-400">
                         Não apenas construímos sites. Criamos ecossistemas digitais que transformam visitantes em defensores da marca.
                     </p>
-                </div>
-
-                {/* Timeline Section */}
-                <div className="relative max-w-6xl mx-auto mb-32">
-                    {/* Central Line */}
-                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 h-full w-[2px] bg-white/5">
-                        <motion.div
-                            style={{ height: lineHeight, maxHeight: '100%' }}
-                            className="w-full bg-gradient-to-b from-digital-primary via-purple-500 to-digital-primary box-shadow-[0_0_20px_rgba(255,215,0,0.5)]"
-                        />
-                    </div>
-
-                    <div className="space-y-0">
-                        {steps.map((step, index) => (
-                            <MethodNode key={step.id} step={step} index={index} />
-                        ))}
-                    </div>
                 </div>
 
                 {/* Results Section (Grid) */}

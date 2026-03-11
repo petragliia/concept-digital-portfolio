@@ -124,6 +124,7 @@ const Contact = () => {
                                     </label>
                                     <input
                                         id="name"
+                                        name="name"
                                         type="text"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none"
                                         value={formData.name}
@@ -146,6 +147,7 @@ const Contact = () => {
                                     </label>
                                     <textarea
                                         id="message"
+                                        name="message"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none resize-none h-32"
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}

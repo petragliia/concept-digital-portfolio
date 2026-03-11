@@ -50,9 +50,10 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors border border-white/10"
-                    aria-label="Fechar Modal"
+                    aria-label="Fechar modal"
+                    title="Fechar modal"
                 >
-                    <X className="w-5 h-5" />
+                    <X className="w-5 h-5" aria-hidden="true" />
                 </button>
 
                 {/* Left Side - Image */}

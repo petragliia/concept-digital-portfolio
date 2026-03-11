@@ -40,8 +40,8 @@ const HomeContent = () => {
         <>
             <Background />
             <Hero />
-            <MethodEvolution />
             <ProjectsSection />
+            <MethodEvolution />
             <Contact />
         </>
     );

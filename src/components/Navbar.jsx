@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,13 +16,9 @@ const Navbar = () => {
 
     const scrollToSection = (id) => {
         setIsMobileMenuOpen(false);
-        if (location.pathname !== '/') {
-            navigate(`/?scrollTo=${id}`);
-        } else {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -35,14 +29,14 @@ const Navbar = () => {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <div className="w-16 md:w-20 cursor-pointer" onClick={() => scrollToSection('hero')}>
-                    <img
+                <div className="w-16 md:w-20 cursor-pointer relative h-10 md:h-12" onClick={() => scrollToSection('hero')}>
+                    <Image
                         src="/logo-concept2.png"
                         alt="Concept Digital"
-                        className="w-full h-auto object-contain"
-                        width="112"
-                        height="61"
-                        loading="eager"
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 64px, 80px"
+                        priority
                     />
                 </div>
 
