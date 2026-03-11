@@ -33,10 +33,10 @@ const Contact = () => {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-6xl mx-auto relative">
                     {/* Animated Line connecting from MethodEvolution */}
-                    <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-[-128px] bottom-16 w-[2px] bg-white/5 z-0">
+                    <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-[-128px] h-[350px] w-[2px] bg-white/5 z-0">
                         <motion.div
                             style={{ height: lineHeight }}
-                            className="w-full bg-gradient-to-b from-digital-primary via-digital-primary to-digital-primary/5 shadow-[0_0_15px_rgba(255,215,0,0.4)] relative"
+                            className="w-full bg-gradient-to-b from-digital-primary via-digital-primary to-transparent shadow-[0_0_15px_rgba(255,215,0,0.4)] relative"
                         >
                             {/* Glowing dot representing the flow */}
                             <motion.div

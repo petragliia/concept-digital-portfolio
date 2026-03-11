@@ -57,8 +57,8 @@ export default function RootLayout({
                 </main>
                 <SpeedInsights />
 
-                {/* Simple Footer reused from App.jsx */}
-                <footer className="py-8 text-center text-gray-300 text-xs uppercase tracking-widest border-t border-white/5 bg-digital-black">
+                {/* Simple Footer */}
+                <footer className="py-8 text-center text-digital-primary text-xs uppercase tracking-widest border-t border-white/5 bg-[#020408]">
                     &copy; {new Date().getFullYear()} Concept Digital. Todos os Direitos Reservados.
                 </footer>
             </body>
