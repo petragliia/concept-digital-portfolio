@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useTransform, useMotionValue, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useInView } from 'framer-motion';
 import { TrendingDown, Zap, ShieldCheck, MousePointerClick, Smartphone, DollarSign } from 'lucide-react';
 
 const results = [
@@ -208,25 +208,25 @@ const ResultCard = ({ result }) => {
     }[result.visual];
 
     return (
-        <TiltCard className="h-full">
+        <TiltCard className="h-full w-full">
             <div className={`
-                h-full relative overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl p-6
+                h-full relative overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-xl p-8
                 transition-all duration-500 hover:border-white/20 hover:-translate-y-2
                 ${result.glow} shadow-2xl flex flex-col justify-between
             `}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${result.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
                 <div className="relative z-10">
-                    <div className="mb-4 p-3 inline-block rounded-lg bg-white/5 border border-white/10">
-                        <result.icon className="w-6 h-6 text-digital-primary" />
+                    <div className="mb-6 p-4 inline-block rounded-xl bg-white/5 border border-white/10">
+                        <result.icon className="w-8 h-8 text-digital-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-montserrat group-hover:text-digital-primary transition-colors">
+                    <h3 className="text-2xl font-bold text-white mb-2 font-montserrat group-hover:text-digital-primary transition-colors">
                         {result.title}
                     </h3>
-                    <p className="text-gray-300 text-xs font-bold uppercase tracking-widest mb-3">
+                    <p className="text-gray-300 text-sm font-bold uppercase tracking-widest mb-4">
                         {result.subtitle}
                     </p>
-                    <p className="text-gray-400 leading-relaxed text-sm mb-6">
+                    <p className="text-gray-400 leading-relaxed text-sm mb-8">
                         {result.description}
                     </p>
                     {VisualComponent && <VisualComponent />}
@@ -236,9 +236,59 @@ const ResultCard = ({ result }) => {
     );
 };
 
-const MethodEvolution = () => {
+const ResultNode = ({ result, index }) => {
+    const isEven = index % 2 === 0;
+
     return (
-        <section id="method" className="py-20 relative bg-gradient-to-b from-black to-[#050505] overflow-clip">
+        <div className={`flex items-center justify-between w-full mb-32 relative ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
+            {/* Content Side */}
+            <div className="w-full md:w-5/12 relative z-10 group">
+                <ResultCard result={result} />
+            </div>
+
+            {/* Center Node */}
+            <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-20 hidden md:flex">
+                <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    className="w-12 h-12 rounded-full bg-[#0A0A0A] border-4 border-white/10 flex items-center justify-center transition-colors duration-500 shadow-xl relative"
+                >
+                    <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${result.color} opacity-20 blur-md`} />
+                    <div className="w-4 h-4 rounded-full bg-digital-primary shadow-[0_0_15px_rgba(255,215,0,0.8)] z-10" />
+                </motion.div>
+
+                {/* Checkpoint text */}
+                <motion.div
+                    initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-bold uppercase tracking-[0.2em] text-white/40 ${isEven ? 'right-16' : 'left-16'}`}
+                >
+                    Fase 0{index + 1}
+                </motion.div>
+            </div>
+
+            {/* Empty Side for alignment */}
+            <div className="w-full md:w-5/12 hidden md:block" />
+        </div>
+    );
+};
+
+
+
+const MethodEvolution = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end end"]
+    });
+
+    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+    return (
+        <section id="method" ref={containerRef} className="py-24 relative bg-gradient-to-b from-black to-[#050505] overflow-clip">
             {/* Background Ambient Light */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-digital-primary/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
@@ -268,22 +318,19 @@ const MethodEvolution = () => {
                     </p>
                 </div>
 
-                {/* Results Section (Grid) */}
-                <div className="relative max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <motion.h3
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-3xl md:text-4xl font-bold font-montserrat text-white"
-                        >
-                            O <span className="text-digital-primary">Resultado</span> Final
-                        </motion.h3>
+                {/* Results Section (Timeline) */}
+                <div className="relative max-w-6xl mx-auto mt-24">
+                    {/* Central Animated Line */}
+                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-4 h-[calc(100%-8rem)] w-[2px] bg-white/5">
+                        <motion.div
+                            style={{ height: lineHeight }}
+                            className="w-full bg-gradient-to-b from-digital-primary via-purple-500 to-digital-primary shadow-[0_0_15px_rgba(255,215,0,0.4)]"
+                        />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {results.map((result) => (
-                            <ResultCard key={result.id} result={result} />
+                    <div className="space-y-0 relative z-10">
+                        {results.map((result, index) => (
+                            <ResultNode key={result.id} result={result} index={index} />
                         ))}
                     </div>
                 </div>
