@@ -5,9 +5,9 @@ import { TrendingDown, Zap, ShieldCheck, MousePointerClick, Smartphone, DollarSi
 const results = [
     {
         id: 'R1',
-        title: "ROI Otimizado",
-        subtitle: "Tráfego Eficiente",
-        description: "Estrutura otimizada que reduz seu custo de aquisição e faz seu orçamento render muito mais.",
+        title: "O Fim do Clique Caro",
+        subtitle: "Lucro no Bolso",
+        description: "Sabe aquele anúncio que atrai muita gente, mas ninguém compra? O problema tá na página. A gente cria uma estrutura que pega o cliente pela mão e faz ele entender que você é a solução. Menos custo por lead, mais grana.",
         icon: TrendingDown,
         visual: "ROIGraph",
         color: "from-yellow-500/20 to-orange-500/20",
@@ -15,9 +15,9 @@ const results = [
     },
     {
         id: 'R2',
-        title: "Zero Atrito",
-        subtitle: "Carregamento Instantâneo",
-        description: "Performance extrema para garantir que você não perca nenhum lead por causa de lentidão.",
+        title: "Velocidade é Dinheiro",
+        subtitle: "Atrito Zero",
+        description: "O cliente hoje não tem nem 3 segundos de paciência. Se a página demorar pra carregar, a venda vai pro ralo. A gente entrega uma performance tão absurda que não dá nem tempo da pessoa pensar em sair.",
         icon: Zap,
         visual: "SpeedCounter",
         color: "from-blue-500/20 to-cyan-500/20",
@@ -25,9 +25,9 @@ const results = [
     },
     {
         id: 'R3',
-        title: "Percepção Premium",
-        subtitle: "Autoridade Visual",
-        description: "Design de alto padrão que transmite credibilidade instantânea e reforça seu posicionamento.",
+        title: "Percepção de Valor Ativada",
+        subtitle: "O Fator Premium",
+        description: "Sabe o que faz a pessoa pagar o dobro no seu produto sem reclamar? O visual. Um design premium faz o cliente pensar: 'se a página é assim, o produto é sensacional'. Vender vira consequência lógica.",
         icon: ShieldCheck,
         visual: "AuthorityVisual",
         color: "from-purple-500/20 to-pink-500/20",
@@ -240,7 +240,7 @@ const ResultNode = ({ result, index }) => {
     const isEven = index % 2 === 0;
 
     return (
-        <div className={`flex items-center justify-between w-full mb-32 relative ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
+        <div className={`flex items-center justify-between w-full mb-12 md:mb-32 last:mb-0 relative ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
             {/* Content Side */}
             <div className="w-full md:w-5/12 relative z-10 group">
                 <ResultCard result={result} />
@@ -328,7 +328,7 @@ const MethodEvolution = () => {
                         />
                     </div>
 
-                    <div className="space-y-0 relative z-10">
+                    <div className="flex flex-col relative z-10 w-full space-y-4 md:space-y-0">
                         {results.map((result, index) => (
                             <ResultNode key={result.id} result={result} index={index} />
                         ))}

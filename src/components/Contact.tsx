@@ -3,15 +3,27 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
+import { trackEvent } from '@/lib/supabase';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', message: '' });
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
     const [contactMethod, setContactMethod] = useState<'email' | 'whatsapp'>('email');
+    const hasStarted = React.useRef(false);
+
+    const checkFormStart = () => {
+        if (!hasStarted.current) {
+            hasStarted.current = true;
+            trackEvent('form_events', { event_type: 'start' });
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        // Register form submit event
+        trackEvent('form_events', { event_type: 'submit' });
+
         const { name, message } = formData;
 
         if (contactMethod === 'whatsapp') {
@@ -128,8 +140,14 @@ const Contact = () => {
                                         type="text"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none"
                                         value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        onFocus={() => setFocusedField('name')}
+                                        onChange={(e) => {
+                                            setFormData({ ...formData, name: e.target.value });
+                                            checkFormStart();
+                                        }}
+                                        onFocus={() => {
+                                            setFocusedField('name');
+                                            checkFormStart();
+                                        }}
                                         onBlur={() => setFocusedField(null)}
                                         aria-label="Seu Nome"
                                         required
@@ -150,8 +168,14 @@ const Contact = () => {
                                         name="message"
                                         className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none resize-none h-32"
                                         value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        onFocus={() => setFocusedField('message')}
+                                        onChange={(e) => {
+                                            setFormData({ ...formData, message: e.target.value });
+                                            checkFormStart();
+                                        }}
+                                        onFocus={() => {
+                                            setFocusedField('message');
+                                            checkFormStart();
+                                        }}
                                         onBlur={() => setFocusedField(null)}
                                         aria-label="Sobre o Projeto"
                                         required

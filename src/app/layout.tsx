@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
@@ -6,22 +6,29 @@ import { Suspense } from "react";
 import PixelTracker from "../components/PixelTracker";
 import CookieConsent from "../components/CookieConsent";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { AnalyticsTracker } from "../components/AnalyticsTracker";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["400", "500", "600", "700", "800"] });
 
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+};
+
 export const metadata: Metadata = {
+    metadataBase: new URL("https://concept-digital-portfolio.vercel.app"),
     title: "Concept Digital | Desenvolvimento Web de Alta Performance",
     description: "Transformamos sua presença digital com sites de alta conversão, design premium e estratégias de SEO avançadas. Especialistas em Landing Pages e E-commerce.",
     keywords: ["desenvolvimento web", "sites de alta conversão", "SEO", "landing pages", "e-commerce", "design premium", "next.js", "react"],
     openGraph: {
         title: "Concept Digital | Desenvolvimento Web de Alta Performance",
         description: "Transformamos sua presença digital com sites de alta conversão, design premium e estratégias de SEO avançadas.",
-        url: "https://conceptdigital.com.br", // Replace with actual URL if known, or leave generic
+        url: "https://concept-digital-portfolio.vercel.app",
         siteName: "Concept Digital",
         images: [
             {
-                url: "/og-image.jpg", // Needs to be created or mapped
+                url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Concept Digital Portfolio",
@@ -29,11 +36,6 @@ export const metadata: Metadata = {
         ],
         locale: "pt_BR",
         type: "website",
-    },
-    viewport: {
-        width: "device-width",
-        initialScale: 1,
-        maximumScale: 1,
     },
 };
 
@@ -47,6 +49,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Suspense fallback={null}>
                     <PixelTracker />
+                    <AnalyticsTracker />
                 </Suspense>
                 <CookieConsent />
                 <Suspense fallback={<nav className="py-6" />}>
