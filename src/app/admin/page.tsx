@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Users, Clock, MousePointerClick, TrendingDown, RefreshCw, AlertTriangle } from 'lucide-react';
+import { Users, Clock, MousePointerClick, TrendingDown, RefreshCw, AlertTriangle, Target, ArrowDownCircle } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid } from 'recharts';
 import { format, subDays, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -12,6 +12,7 @@ interface AnalyticsData {
     pageViews: any[];
     projectClicks: any[];
     formEvents: any[];
+    ctaClicks: any[];
 }
 
 export default function AdminDashboard() {
@@ -30,10 +31,11 @@ export default function AdminDashboard() {
             thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
             const dateStr = thirtyDaysAgo.toISOString();
 
-            const [views, clicks, forms] = await Promise.all([
+            const [views, clicks, forms, ctas] = await Promise.all([
                 supabase.from('page_views').select('*').gte('created_at', dateStr).order('created_at', { ascending: true }),
                 supabase.from('project_clicks').select('*').gte('created_at', dateStr),
-                supabase.from('form_events').select('*').gte('created_at', dateStr)
+                supabase.from('form_events').select('*').gte('created_at', dateStr),
+                supabase.from('cta_clicks').select('*').gte('created_at', dateStr)
             ]);
 
             if (views.error) throw views.error;
@@ -41,7 +43,8 @@ export default function AdminDashboard() {
             setData({
                 pageViews: views.data || [],
                 projectClicks: clicks.data || [],
-                formEvents: forms.data || []
+                formEvents: forms.data || [],
+                ctaClicks: ctas.data || []
             });
         } catch (err: any) {
             console.error(err);
@@ -68,8 +71,8 @@ export default function AdminDashboard() {
 
     if (error || !data) {
         return (
-            <div className="min-h-screen bg-[#020408] text-white p-8">
-                <div className="max-w-4xl mx-auto bg-red-900/20 border border-red-500/50 rounded-xl p-8 text-center flex flex-col items-center gap-4">
+            <div className="min-h-screen bg-[#020408] text-white p-4 md:p-8">
+                <div className="max-w-4xl mx-auto bg-red-900/20 border border-red-500/50 rounded-xl p-6 md:p-8 text-center flex flex-col items-center gap-4">
                     <AlertTriangle className="w-12 h-12 text-red-500" />
                     <h2 className="text-xl font-bold">Erro de Conexão</h2>
                     <p className="text-red-200">{error}</p>
@@ -77,7 +80,7 @@ export default function AdminDashboard() {
                         Tentar Novamente
                     </button>
                     <p className="text-sm text-gray-400 mt-4 max-w-lg">
-                        Lembre-se de criar o seu projeto no Supabase, colocar as chaves no <b>.env.local</b> e rodar o script SQL de configuração.
+                        Lembre-se de rodar o novo script SQL atualizado para criar a tabela de CTAs e o Scroll Depth.
                     </p>
                 </div>
             </div>
@@ -102,6 +105,21 @@ export default function AdminDashboard() {
     // Devices
     const mobileViews = data.pageViews.filter(v => v.device === 'Mobile').length;
     const desktopViews = totalViews - mobileViews;
+
+    // Scroll Depth
+    const validScrolls = data.pageViews.filter(v => v.max_scroll > 0);
+    const avgScroll = validScrolls.length > 0 
+        ? Math.round(validScrolls.reduce((acc, curr) => acc + curr.max_scroll, 0) / validScrolls.length)
+        : 0;
+
+    // CTAs e Clickmaps
+    const ctaCounts = data.ctaClicks.reduce((acc: any, curr) => {
+        acc[curr.button_id] = (acc[curr.button_id] || 0) + 1;
+        return acc;
+    }, {});
+    const topCta = Object.entries(ctaCounts).sort((a: any, b: any) => b[1] - a[1])[0] as [string, number] | undefined;
+    const topCtaName = topCta ? topCta[0].replace('_contact', '') : 'Nenhum';
+    const topCtaVal = topCta ? topCta[1] : 0;
 
     // Agrupando acessos por dia para o gráfico
     const viewsByDate = data.pageViews.reduce((acc: any, curr) => {
@@ -128,23 +146,23 @@ export default function AdminDashboard() {
         .slice(0, 5); // Top 5
 
     return (
-        <div className="min-h-screen bg-[#020408] text-white p-6 lg:p-12 font-inter selection:bg-digital-primary/30">
+        <div className="min-h-screen bg-[#020408] text-white p-4 sm:p-6 lg:p-12 font-inter selection:bg-digital-primary/30">
             <div className="max-w-7xl mx-auto space-y-8">
                 
                 {/* Header */}
-                <div className="flex justify-between items-end border-b border-white/10 pb-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-white/10 pb-6 gap-4 sm:gap-0">
                     <div>
                         <p className="text-digital-primary text-xs font-bold uppercase tracking-[0.2em] mb-2">Restrito</p>
                         <h1 className="text-3xl md:text-4xl font-bold font-montserrat">Dashboard <span className="text-gray-500">Analytics</span></h1>
-                        <p className="text-gray-400 mt-2">Visão geral do tráfego e engajamento do seu portfólio nos últimos 30 dias.</p>
+                        <p className="text-gray-400 mt-2 text-sm sm:text-base">Visão geral do tráfego e engajamento do seu portfólio.</p>
                     </div>
-                    <button onClick={fetchData} className="hidden md:flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                    <button onClick={fetchData} className="w-full sm:w-auto flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
                         <RefreshCw className="w-4 h-4" /> Atualizar
                     </button>
                 </div>
 
                 {/* KPI Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <MetricCard 
                         title="Total de Visitantes" 
                         value={totalViews} 
@@ -158,13 +176,25 @@ export default function AdminDashboard() {
                         subtitle={validSessions.length > 0 ? "Sessões ativas com > 2s" : "Dados insuficientes"} 
                     />
                     <MetricCard 
+                        title="Profundidade de Leitura" 
+                        value={`${avgScroll}%`} 
+                        icon={<ArrowDownCircle className="w-5 h-5 text-digital-primary" />} 
+                        subtitle={`Média máxima de scroll (${validScrolls.length} capturas)`} 
+                    />
+                    <MetricCard 
                         title="Projetos Abertos" 
                         value={data.projectClicks.length} 
                         icon={<MousePointerClick className="w-5 h-5 text-digital-primary" />} 
                         subtitle="Cliques totais em modais" 
                     />
                     <MetricCard 
-                        title="Taxa de Abandono" 
+                        title="Canal Favorito (CTA)" 
+                        value={topCtaName.toUpperCase()} 
+                        icon={<Target className="w-5 h-5 text-digital-primary" />} 
+                        subtitle={`${topCtaVal} cliques diretos no botão`} 
+                    />
+                    <MetricCard 
+                        title="Taxa de Abandono (Form)" 
                         value={`${abandonmentRate}%`} 
                         icon={<TrendingDown className="w-5 h-5 text-red-400" />} 
                         subtitle={`${formStarts} iniciaram • ${formSubmits} enviaram`} 
@@ -173,14 +203,14 @@ export default function AdminDashboard() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Gráfico de Acessos Principais */}
-                    <div className="lg:col-span-2 bg-[#0A0A0A] border border-white/5 rounded-2xl p-6">
+                    <div className="lg:col-span-2 bg-[#0A0A0A] border border-white/5 rounded-2xl p-4 sm:p-6">
                         <h3 className="text-lg font-bold mb-6 font-montserrat">Tráfego Diário (Últimos 7 dias)</h3>
-                        <div className="h-72 w-full">
+                        <div className="h-64 sm:h-72 w-full">
                             <ResponsiveContainer width="100%" height="100%">
                                 <LineChart data={chartData}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
                                     <XAxis dataKey="data" stroke="#666" tick={{ fill: '#666', fontSize: 12 }} axisLine={false} tickLine={false} />
-                                    <YAxis stroke="#666" tick={{ fill: '#666', fontSize: 12 }} axisLine={false} tickLine={false} />
+                                    <YAxis stroke="#666" tick={{ fill: '#666', fontSize: 12 }} axisLine={false} tickLine={false} width={30} />
                                     <Tooltip 
                                         contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
                                         itemStyle={{ color: '#c5a059' }}
@@ -192,7 +222,7 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* Gráfico de Projetos Mais Clicados */}
-                    <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-6 flex flex-col">
+                    <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-4 sm:p-6 flex flex-col">
                         <h3 className="text-lg font-bold mb-6 font-montserrat">Projetos Mais Populares</h3>
                         {projectRanking.length > 0 ? (
                             <div className="flex-1 w-full flex items-end">
@@ -216,7 +246,7 @@ export default function AdminDashboard() {
                                 </ResponsiveContainer>
                             </div>
                         ) : (
-                            <div className="flex-1 flex flex-col items-center justify-center text-gray-500 gap-2">
+                            <div className="flex-1 flex flex-col items-center justify-center text-gray-500 gap-2 min-h-[200px]">
                                 <MousePointerClick className="w-8 h-8 opacity-20" />
                                 <p className="text-sm">Nenhum clique registrado ainda</p>
                             </div>
@@ -231,14 +261,14 @@ export default function AdminDashboard() {
 
 function MetricCard({ title, value, icon, subtitle }: { title: string, value: string | number, icon: React.ReactNode, subtitle: string }) {
     return (
-        <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-digital-primary/30 transition-colors">
-            <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
+        <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-5 sm:p-6 relative overflow-hidden group hover:border-digital-primary/30 transition-colors">
+            <div className="absolute top-0 right-0 p-4 sm:p-6 opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
                 {icon}
             </div>
             <div className="relative z-10">
-                <p className="text-gray-400 text-sm font-medium mb-1">{title}</p>
-                <h3 className="text-3xl font-bold text-white mb-2 font-montserrat">{value}</h3>
-                <p className="text-xs text-gray-500">{subtitle}</p>
+                <p className="text-gray-400 text-xs sm:text-sm font-medium mb-1">{title}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-montserrat">{value}</h3>
+                <p className="text-[10px] sm:text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">{subtitle}</p>
             </div>
             <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-digital-primary/50 to-transparent w-full scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
         </div>

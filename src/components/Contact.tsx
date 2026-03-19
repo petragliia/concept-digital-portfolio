@@ -23,6 +23,7 @@ const Contact = () => {
         e.preventDefault();
         // Register form submit event
         trackEvent('form_events', { event_type: 'submit' });
+        trackEvent('cta_clicks', { button_id: contactMethod === 'whatsapp' ? 'whatsapp_contact' : 'email_contact', path: window.location.pathname });
 
         const { name, message } = formData;
 

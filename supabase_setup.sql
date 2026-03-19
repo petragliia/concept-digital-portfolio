@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS page_views (
     path TEXT NOT NULL,
     device TEXT,
     time_spent INTEGER DEFAULT 0,
+    max_scroll INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -21,22 +22,35 @@ CREATE TABLE IF NOT EXISTS form_events (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Políticas de RLS (Para permitir inserção pública mas leitura apenas autenticada ou via chave privada se desejado)
--- Para simplificar o MVP (já que o frontend usará a ANON KEY para inserir):
-ALTER TABLE page_views ENABLE ROW LEVEL SECURITY;
-ALTER TABLE project_clicks ENABLE ROW LEVEL SECURITY;
-ALTER TABLE form_events ENABLE ROW LEVEL SECURITY;
+CREATE TABLE IF NOT EXISTS cta_clicks (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    button_id TEXT NOT NULL, -- 'whatsapp_contact', 'email_contact', 'header_contact' etc
+    path TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
 
--- Permitir INSERT para todos (anon)
-CREATE POLICY "Allow public inserts on page_views" ON page_views FOR INSERT TO public WITH CHECK (true);
-CREATE POLICY "Allow public inserts on project_clicks" ON project_clicks FOR INSERT TO public WITH CHECK (true);
-CREATE POLICY "Allow public inserts on form_events" ON form_events FOR INSERT TO public WITH CHECK (true);
+-- Tentar adicionar a coluna max_scroll caso existam tabelas antigas (Ignora se já existir)
+DO $$
+BEGIN
+    BEGIN
+        ALTER TABLE page_views ADD COLUMN max_scroll INTEGER DEFAULT 0;
+    EXCEPTION
+        WHEN duplicate_column THEN null;
+    END;
+END $$;
 
--- Permitir SELECT (Leitura) apenas para gerar o Admin Dashboard através do React Admin usando a Anon Key 
--- (Idealmente restringir, mas como usaremos apenas a Anon Key no FrontEnd Client do Dashboard):
-CREATE POLICY "Allow public select on page_views" ON page_views FOR SELECT TO public USING (true);
-CREATE POLICY "Allow public select on project_clicks" ON project_clicks FOR SELECT TO public USING (true);
-CREATE POLICY "Allow public select on form_events" ON form_events FOR SELECT TO public USING (true);
+-- ====== FORÇAR PERMISSÕES PÚBLICAS PARA MVP (Desliga a fechadura RLS) ====== --
+-- 1. Garante que os tokens públicos possam acessar o ambiente público
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
 
--- Caso fosse usar a anon_key também para update do tempo
-CREATE POLICY "Allow public updates on page_views" ON page_views FOR UPDATE TO public USING (true);
+-- 2. Concede controle total das tabelas para o token público
+GRANT ALL ON TABLE page_views TO anon, authenticated;
+GRANT ALL ON TABLE project_clicks TO anon, authenticated;
+GRANT ALL ON TABLE form_events TO anon, authenticated;
+GRANT ALL ON TABLE cta_clicks TO anon, authenticated;
+
+-- 3. Desliga a checagem individual por linha (RLS)
+ALTER TABLE page_views DISABLE ROW LEVEL SECURITY;
+ALTER TABLE project_clicks DISABLE ROW LEVEL SECURITY;
+ALTER TABLE form_events DISABLE ROW LEVEL SECURITY;
+ALTER TABLE cta_clicks DISABLE ROW LEVEL SECURITY;

@@ -92,7 +92,7 @@ export const projects = [
         title: "E-commerce de Alta Conversão para Streetwear",
         category: "E-commerce",
         description: "Loja virtual imersiva e focada no estilo urbano, pronta para escalar o faturamento da sua marca de Street.",
-        image_url: "/projects/concept-ecommerce-cloth.jpg",
+        image_url: "/projects/streetwear.png",
         demo_link: "https://concept-streetwear-ecommerce.vercel.app/"
     }
 ];

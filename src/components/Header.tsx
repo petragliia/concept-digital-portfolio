@@ -19,6 +19,10 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    if (pathname?.startsWith('/admin')) {
+        return null;
+    }
+
     const scrollToSection = (id: string) => {
         setIsMobileMenuOpen(false);
         if (pathname !== '/') {
@@ -70,7 +74,12 @@ const Header = () => {
                         </button>
                     ))}
                     <button
-                        onClick={() => scrollToSection('contact')}
+                        onClick={() => {
+                            import('@/lib/supabase').then(({ trackEvent }) => {
+                                trackEvent('cta_clicks', { button_id: 'header_contact', path: pathname || '/' });
+                            });
+                            scrollToSection('contact');
+                        }}
                         className="px-6 py-2 border border-digital-primary text-digital-primary hover:bg-digital-primary hover:text-digital-black transition-all rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_25px_rgba(197,160,89,0.5)]"
                         aria-label="Entre em Contato"
                     >
